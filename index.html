@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isunza Logistics Inc. — Full-Truckload Freight Brokerage | Orland Park, IL</title>
+    <meta name="description" content="Isunza Logistics Inc. is a full-truckload freight brokerage based in Orland Park, IL. 10+ years connecting shippers with vetted, compliant carriers across all equipment types.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ========================
+           RESET & BASE
+        ======================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --navy: #0A1628;
+            --navy-dark: #080f1e;
+            --red: #CC0000;
+            --red-dark: #AA0000;
+            --light-bg: #f5f5f5;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+        }
+
+        /* ========================
+           UTILITIES
+        ======================== */
+        .container {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            max-width: 580px;
+            margin: 0 auto;
+            opacity: 0.75;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            letter-spacing: 0.01em;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(204,0,0,0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.8);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ========================
+           NAV
+        ======================== */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            border-bottom: 3px solid #CC0000;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 80px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nav-logo img {
+            height: 70px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #0A1628;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-phone {
+            color: #0A1628;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+
+        .nav-phone:hover {
+            color: var(--red);
+        }
+
+        .nav-cta {
+            background: var(--red);
+            color: #fff;
+            padding: 9px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background: var(--red-dark);
+            transform: translateY(-1px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: #0A1628;
+            border-radius: 2px;
+            transition: all 0.28s ease;
+            transform-origin: center;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: #ffffff;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li a {
+            display: block;
+            color: #0A1628;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 28px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: color 0.2s;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--red);
+        }
+
+        .mobile-menu-bottom {
+            padding: 20px 28px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mobile-phone {
+            color: #0A1628;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* ========================
+           HERO
+        ======================== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                        url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=80') center center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 720px;
+            padding: 80px 0;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 4px;
+            margin-bottom: 26px;
+        }
+
+        .hero h1 {
+            font-size: 3.6rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.12;
+            margin-bottom: 22px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 42px;
+            max-width: 560px;
+            line-height: 1.65;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* ========================
+           TRUST BAR
+        ======================== */
+        .trust-bar {
+            background: #0A1628;
+            border-top: 3px solid var(--red);
+            padding: 44px 28px;
+        }
+
+        .trust-bar-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .trust-item {
+            text-align: center;
+            color: #fff;
+            padding: 0 12px;
+        }
+
+        .trust-divider {
+            border-right: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .trust-icon {
+            font-size: 1.65rem;
+            margin-bottom: 12px;
+            display: block;
+            line-height: 1;
+            color: var(--red);
+        }
+
+        .trust-number {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--red);
+            display: block;
+            line-height: 1.1;
+            margin-bottom: 5px;
+        }
+
+        .trust-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.65);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        /* ========================
+           SERVICES
+        ======================== */
+        .services {
+            background: #ffffff;
+            padding: 88px 28px;
+        }
+
+        .services .section-header h2 {
+            color: var(--navy);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 32px 26px;
+            box-shadow: 0 2px 18px rgba(0,0,0,0.07);
+            transition: transform 0.22s, box-shadow 0.22s;
+            border-top: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            border-top-color: var(--red);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .service-tag {
+            display: inline-block;
+            background: rgba(204,0,0,0.08);
+            color: var(--red);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .service-card h3 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.65;
+        }
+
+        /* ========================
+           HOW IT WORKS
+        ======================== */
+        .how-it-works {
+            background: #f5f5f5;
+            padding: 88px 28px;
+        }
+
+        .how-it-works .section-header h2 {
+            color: var(--navy);
+        }
+
+        .steps-wrapper {
+            max-width: 980px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .steps-connector {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 0;
+            position: relative;
+        }
+
+        .steps-connector::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: calc(16.7% + 36px);
+            right: calc(16.7% + 36px);
+            height: 2px;
+            background: linear-gradient(to right, var(--red) 0%, rgba(204,0,0,0.2) 100%);
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: var(--navy);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin: 0 auto 22px;
+            border: 3px solid var(--red);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .step p {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.65;
+        }
+
+        /* ========================
+           WHY ISUNZA
+        ======================== */
+        .why-isunza {
+            background: var(--navy);
+            padding: 88px 28px;
+        }
+
+        .why-isunza .section-header h2 {
+            color: #fff;
+        }
+
+        .why-isunza .section-header p {
+            color: rgba(255,255,255,0.65);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 26px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .why-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 8px;
+            padding: 32px 28px;
+            transition: background 0.22s, border-color 0.22s;
+        }
+
+        .why-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(204,0,0,0.5);
+        }
+
+        .why-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .why-card-icon {
+            font-size: 1.7rem;
+            flex-shrink: 0;
+        }
+
+        .why-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .why-card p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+        }
+
+        /* ========================
+           CARRIERS
+        ======================== */
+        .carriers {
+            background: #ffffff;
+            padding: 88px 28px;
+        }
+
+        .carriers-inner {
+            max-width: 820px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .carriers-inner h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 22px;
+            letter-spacing: -0.02em;
+        }
+
+        .carriers-inner .carriers-lead {
+            font-size: 0.98rem;
+            color: #444;
+            line-height: 1.75;
+            margin-bottom: 14px;
+        }
+
+        .carriers-inner .carriers-lead:last-of-type {
+            margin-bottom: 36px;
+        }
+
+        .carriers-benefits {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 36px;
+            text-align: left;
+            margin: 0 auto 40px;
+            max-width: 640px;
+        }
+
+        .carriers-benefits li {
+            font-size: 0.9rem;
+            color: #333;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.5;
+        }
+
+        .carriers-benefits li::before {
+            content: '✓';
+            color: var(--red);
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ========================
+           CAREERS
+        ======================== */
+        .careers {
+            background: #f5f5f5;
+            padding: 88px 28px;
+        }
+
+        .careers-inner {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .careers-inner h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .careers-intro {
+            font-size: 0.98rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 44px;
+            max-width: 700px;
+        }
+
+        .careers-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 52px;
+            align-items: start;
+        }
+
+        .col-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: rgba(10,22,40,0.45);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 18px;
+        }
+
+        .careers-roles ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .careers-roles li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.98rem;
+            color: var(--navy);
+            font-weight: 600;
+            padding: 14px 18px;
+            background: #ffffff;
+            border-radius: 6px;
+            border-left: 4px solid var(--red);
+        }
+
+        .careers-offer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-bottom: 30px;
+        }
+
+        .careers-offer li {
+            font-size: 0.9rem;
+            color: #333;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.55;
+        }
+
+        .careers-offer li::before {
+            content: '→';
+            color: var(--red);
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ========================
+           ABOUT
+        ======================== */
+        .about {
+            background: #ffffff;
+            padding: 88px 28px;
+        }
+
+        .about-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-logo {
+            max-width: 180px;
+            height: auto;
+            display: block;
+            margin: 0 auto 32px;
+        }
+
+        .about-inner h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+
+        .about-inner p {
+            font-size: 0.98rem;
+            color: #444;
+            line-height: 1.85;
+            margin-bottom: 18px;
+        }
+
+        .about-inner p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ========================
+           CONTACT
+        ======================== */
+        .contact {
+            background: #0A1628;
+            padding: 88px 28px;
+        }
+
+        .contact .section-header h2 {
+            color: #ffffff;
+        }
+
+        .contact .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 56px;
+            max-width: 1040px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: #fff;
+            border-radius: 8px;
+            padding: 42px;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 7px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e0e4eb;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.92rem;
+            color: #1a1a1a;
+            background: #fff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(204,0,0,0.12);
+        }
+
+        .form-group textarea {
+            height: 128px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--red);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            letter-spacing: 0.02em;
+        }
+
+        .form-submit:hover {
+            background: var(--red-dark);
+            transform: translateY(-1px);
+        }
+
+        .contact-info-panel h3 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 28px;
+        }
+
+        .contact-info-items {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .ci-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .ci-icon-wrap {
+            width: 40px;
+            height: 40px;
+            background: rgba(204,0,0,0.15);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .ci-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 3px;
+        }
+
+        .ci-value {
+            font-size: 0.92rem;
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            line-height: 1.5;
+            transition: color 0.2s;
+        }
+
+        a.ci-value:hover {
+            color: var(--red);
+        }
+
+        .compliance-badge {
+            margin-top: 32px;
+            padding: 18px 20px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 8px;
+            border-left: 3px solid var(--red);
+        }
+
+        .compliance-badge p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.65;
+        }
+
+        .compliance-badge strong {
+            color: #ffffff;
+        }
+
+        /* ========================
+           24/7 AVAILABILITY BANNER
+        ======================== */
+        .availability-banner {
+            background: #CC0000;
+            padding: 20px 28px;
+            text-align: center;
+        }
+
+        .availability-banner p {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin: 0;
+        }
+
+        /* ========================
+           FOOTER
+        ======================== */
+        .footer {
+            background: #080f1e;
+            padding: 56px 28px 28px;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            gap: 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-brand img {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin-bottom: 18px;
+            object-fit: contain;
+        }
+
+        .footer-brand p {
+            font-size: 0.83rem;
+            color: rgba(255,255,255,0.42);
+            line-height: 1.7;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.42);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 18px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .footer-col ul a {
+            font-size: 0.87rem;
+            color: rgba(255,255,255,0.58);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--red);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 22px;
+        }
+
+        .footer-legal a {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.3);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-legal a:hover {
+            color: rgba(255,255,255,0.65);
+        }
+
+        /* ========================
+           RESPONSIVE — TABLET
+        ======================== */
+        @media (max-width: 960px) {
+            .nav-links,
+            .nav-phone {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .trust-bar-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .trust-divider {
+                border-right: none;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-connector {
+                flex-direction: column;
+                align-items: center;
+                gap: 32px;
+            }
+
+            .steps-connector::before {
+                display: none;
+            }
+
+            .step {
+                max-width: 480px;
+                width: 100%;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+                max-width: 580px;
+            }
+
+            .carriers-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .careers-layout {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ========================
+           RESPONSIVE — MOBILE
+        ======================== */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+
+            .hero-sub {
+                font-size: 0.95rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .hero-ctas .btn {
+                text-align: center;
+                width: 100%;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .services,
+            .how-it-works,
+            .why-isunza,
+            .carriers,
+            .careers,
+            .about,
+            .contact {
+                padding: 56px 20px;
+            }
+
+            .trust-bar {
+                padding: 36px 20px;
+            }
+
+            .trust-number {
+                font-size: 1.6rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 28px 22px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                justify-content: center;
+            }
+
+            .careers-inner h2,
+            .carriers-inner h2 {
+                font-size: 1.8rem;
+            }
+
+            .availability-banner p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========================
+     NAV
+======================== -->
+<header class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <img src="https://img1.wsimg.com/isteam/ip/7126f5a4-6aec-49a2-ab3c-8a499e39bc43/Isuza_Logistics_PNG_File-01.png/:/rs=h:110,cg:true,m/qt=q:95" alt="Isunza Logistics Inc.">
+        </a>
+        <nav aria-label="Main navigation">
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#carriers">Carriers</a></li>
+                <li><a href="#careers">Careers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-right">
+            <a href="tel:6306724916" class="nav-phone">&#9742;&nbsp;(630) 672-4916</a>
+            <a href="#contact" class="nav-cta">Get a Quote</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+        <ul>
+            <li><a href="#services" class="mobile-link">Services</a></li>
+            <li><a href="#how-it-works" class="mobile-link">How It Works</a></li>
+            <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#carriers" class="mobile-link">Carriers</a></li>
+            <li><a href="#careers" class="mobile-link">Careers</a></li>
+            <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
+        <div class="mobile-menu-bottom">
+            <a href="tel:6306724916" class="mobile-phone">&#9742;&nbsp;(630) 672-4916</a>
+            <a href="#contact" class="btn btn-primary mobile-link" style="text-align:center;">Get a Quote</a>
+        </div>
+    </nav>
+</header>
+
+<!-- ========================
+     HERO
+======================== -->
+<section class="hero" id="hero" aria-label="Hero">
+    <div class="container">
+        <div class="hero-content">
+            <span class="hero-eyebrow">Full-Truckload Freight Brokerage &mdash; Orland Park, IL</span>
+            <h1>We Do the Small Things Right.<br><span>The Rest Follows.</span></h1>
+            <p class="hero-sub">We connect shippers with vetted, compliant carriers — handling every detail from dispatch to delivery so you can focus on running your business.</p>
+            <div class="hero-ctas">
+                <a href="#contact" class="btn btn-primary">Request a Quote</a>
+                <a href="#carriers" class="btn btn-secondary">Become a Carrier</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     TRUST BAR
+======================== -->
+<section class="trust-bar" aria-label="Company highlights">
+    <div class="trust-bar-grid">
+        <div class="trust-item trust-divider">
+            <span class="trust-icon"><i class="fa-solid fa-medal"></i></span>
+            <span class="trust-number">10+</span>
+            <span class="trust-label">Years of Experience</span>
+        </div>
+        <div class="trust-item trust-divider">
+            <span class="trust-icon"><i class="fa-solid fa-headset"></i></span>
+            <span class="trust-number">24/7/365</span>
+            <span class="trust-label">Support Available</span>
+        </div>
+        <div class="trust-item trust-divider">
+            <span class="trust-icon"><i class="fa-solid fa-location-dot"></i></span>
+            <span class="trust-number">Live</span>
+            <span class="trust-label">Tracking on Every Load</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon"><i class="fa-solid fa-user-tie"></i></span>
+            <span class="trust-number">1</span>
+            <span class="trust-label">Dedicated Point of Contact</span>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     SERVICES
+======================== -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header">
+            <h2>What We Move</h2>
+            <p>Six equipment types. One point of contact. Whatever you're shipping and wherever it's going, we have the solution.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">&#10052;&#65039;</span>
+                <span class="service-tag">Temperature Controlled</span>
+                <h3>Reefer</h3>
+                <p>Perishable goods, pharmaceuticals, and temperature-sensitive freight moved in properly maintained reefer units with precise monitoring throughout transit.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">&#128666;</span>
+                <span class="service-tag">Standard Freight</span>
+                <h3>Dry Van</h3>
+                <p>The workhorse of freight. We move boxed, palletized, and general dry goods across all lanes — regional, long-haul, and coast-to-coast.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">&#9874;&#65039;</span>
+                <span class="service-tag">Heavy Haul</span>
+                <h3>Flatbed &amp; Oversized</h3>
+                <p>Machinery, structural steel, building materials, and oversize loads handled with proper permitting, rigging, and routing coordination.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">&#9889;</span>
+                <span class="service-tag">Expedited</span>
+                <h3>Sprinter Vans &amp; Hot Shots</h3>
+                <p>Time-critical freight that can't wait for a full truck. Fast, direct point-to-point delivery for urgent shipments with a tight timeline.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">&#128268;</span>
+                <span class="service-tag">Flexible</span>
+                <h3>Power Only</h3>
+                <p>You manage the trailer, we provide the truck. Power-only service for shippers who run their own trailer pools and need reliable tractor capacity.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">&#128278;</span>
+                <span class="service-tag">Drop &amp; Hook</span>
+                <h3>Drop Trailer</h3>
+                <p>Streamlined dock operations with drop trailer solutions — reducing dwell time, improving throughput, and keeping your yard moving on schedule.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     HOW IT WORKS
+======================== -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <div class="section-header">
+            <h2>Simple Process. Zero Surprises.</h2>
+            <p>From the first call to final delivery, we keep things straightforward and you stay informed the whole way through.</p>
+        </div>
+        <div class="steps-wrapper">
+            <div class="steps-connector">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Tell Us About Your Load</h3>
+                    <p>Share your origin, destination, equipment needs, and any special requirements. One call or email is all it takes to get started.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Handle the Rest</h3>
+                    <p>We match, vet, and dispatch a fully compliant carrier. Every driver is screened through MyCarrierPackets and Carrier411 before they touch your freight.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Stay Informed Until Delivery</h3>
+                    <p>Real-time updates from pickup to drop-off. Your rep talks directly to the driver — you'll know where your load is without having to chase anyone.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     WHY ISUNZA
+======================== -->
+<section class="why-isunza" id="why-isunza">
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Shippers Trust Isunza</h2>
+            <p>We're not a load board. We're a partner. Here's what that means in practice.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-card-header">
+                    <span class="why-card-icon">&#128100;</span>
+                    <h3>Single Point of Contact</h3>
+                </div>
+                <p>Your dedicated rep knows your freight, your lanes, and your requirements. They talk directly to the driver — not to a dispatcher who talks to a dispatcher. No telephone game, just straight answers when something comes up.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-card-header">
+                    <span class="why-card-icon">&#9989;</span>
+                    <h3>Carrier Compliance</h3>
+                </div>
+                <p>Every carrier in our network is vetted through MyCarrierPackets and verified through Carrier411 before they haul for us. We don't cut corners on compliance — and neither should your freight partner.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-card-header">
+                    <span class="why-card-icon">&#128205;</span>
+                    <h3>Real-Time Tracking</h3>
+                </div>
+                <p>We're compatible with all major tracking platforms. Whether you need check calls, GPS updates, or ELD integration, we work within your existing systems — not around them — so visibility is never a negotiation.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-card-header">
+                    <span class="why-card-icon">&#128176;</span>
+                    <h3>On-Time Carrier Pay</h3>
+                </div>
+                <p>Carriers haul for brokers who pay reliably. We're backed by a reputable financial partner, which means our carriers get paid on time — and that translates directly into better carrier coverage for your freight.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     CARRIERS
+======================== -->
+<section class="carriers" id="carriers">
+    <div class="container">
+        <div class="carriers-inner">
+            <h2>Partner With Us as a Carrier</h2>
+            <p class="carriers-lead">We work with owner-operators and small fleets who are tired of chasing payments and fighting for loads. If you run a clean operation and show up when you say you will, we want to work with you — consistently.</p>
+            <p class="carriers-lead">Onboarding is straightforward. Pay is on time. And we build real working relationships, not one-load transactions.</p>
+            <ul class="carriers-benefits">
+                <li>Consistent load volume on active lanes</li>
+                <li>On-time payment through a trusted financial partner</li>
+                <li>Quick, simple carrier packet onboarding</li>
+                <li>Direct communication — no layers of middlemen</li>
+                <li>Dedicated rep who knows your equipment and preferences</li>
+                <li>Reefer, dry van, flatbed, and hot shot opportunities</li>
+            </ul>
+            <a href="mailto:Josh@Isunza-Logistics.com?subject=Carrier Packet Request" class="btn btn-primary">Request a Carrier Packet</a>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     CAREERS
+======================== -->
+<section class="careers" id="careers">
+    <div class="container">
+        <div class="careers-inner">
+            <h2>Build Your Career at Isunza</h2>
+            <p class="careers-intro">We're a growing freight brokerage with a focused team and real room to advance. If you're motivated, coachable, and want to own your results — not just fill a seat — this is the kind of place where that work gets noticed. We offer direct mentorship from a 10+ year industry veteran, real responsibility from day one, and the structure to grow a book of business that's genuinely yours.</p>
+            <div class="careers-layout">
+                <div class="careers-roles">
+                    <p class="col-label">Currently Hiring</p>
+                    <ul>
+                        <li>&#128203;&nbsp; Freight Broker / Agent</li>
+                        <li>&#128222;&nbsp; Dispatcher</li>
+                        <li>&#129309;&nbsp; Account Manager</li>
+                        <li>&#9881;&#65039;&nbsp; Operations Coordinator</li>
+                    </ul>
+                </div>
+                <div class="careers-offer">
+                    <p class="col-label">What You Get</p>
+                    <ul>
+                        <li>Competitive base pay with performance upside</li>
+                        <li>Mentorship from a 10+ year industry veteran</li>
+                        <li>Real ownership of your book of business from day one</li>
+                        <li>A tight-knit team where your contributions are visible</li>
+                        <li>No corporate red tape — results-driven culture, full stop</li>
+                    </ul>
+                    <a href="mailto:Josh@Isunza-Logistics.com?subject=Career Inquiry" class="btn btn-primary">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     ABOUT
+======================== -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-inner">
+            <img src="https://img1.wsimg.com/isteam/ip/7126f5a4-6aec-49a2-ab3c-8a499e39bc43/Isuza_Logistics_PNG_File-01.png/:/rs=h:110,cg:true,m/qt=q:95" alt="Isunza Logistics Inc." class="about-logo">
+            <h2>About Isunza Logistics</h2>
+            <p>Isunza Logistics Inc. is a full-truckload freight brokerage headquartered in Orland Park, Illinois, with over 10 years of experience in the industry. We operate across all major equipment types and lanes — from temperature-controlled reefer to flatbed and oversized — serving shippers who need reliable execution and carriers who value consistent volume and on-time pay.</p>
+            <p>What sets us apart isn't a technology platform or a load board — it's accountability. Every account gets a dedicated rep who knows the freight, knows the lane, and knows the driver. That rep is your single point of contact from booking through delivery, so nothing gets lost in translation.</p>
+            <p>We're built for long-term partnerships, not transactional volume. Every carrier we work with is vetted through MyCarrierPackets and Carrier411 before they haul for us, because the quality of our carrier network is a direct reflection of the service we deliver to shippers.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     CONTACT
+======================== -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2>Let's Move Your Freight</h2>
+            <p>Tell us about your load and we'll get back to you with a quote — usually the same day.</p>
+        </div>
+        <div class="contact-layout">
+            <div class="contact-form">
+                <form name="contact" action="mailto:Josh@Isunza-Logistics.com" method="post" enctype="text/plain">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Company name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your shipment — origin, destination, equipment type, frequency, any special requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info-panel">
+                <h3>Contact Isunza Logistics</h3>
+                <div class="contact-info-items">
+                    <div class="ci-item">
+                        <div class="ci-icon-wrap">&#128205;</div>
+                        <div>
+                            <div class="ci-label">Address</div>
+                            <span class="ci-value">15255 S 94th Ave, Suite 500<br>Orland Park, IL 60462</span>
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <div class="ci-icon-wrap">&#128222;</div>
+                        <div>
+                            <div class="ci-label">Phone</div>
+                            <a href="tel:6306724916" class="ci-value">(630) 672-4916</a>
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <div class="ci-icon-wrap">&#9993;&#65039;</div>
+                        <div>
+                            <div class="ci-label">Email</div>
+                            <a href="mailto:Josh@Isunza-Logistics.com" class="ci-value">Josh@Isunza-Logistics.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="compliance-badge">
+                    <p>All carriers onboarded through <strong>MyCarrierPackets</strong> and verified through <strong>Carrier411</strong>. Available <strong>24/7/365</strong> for all freight needs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     24/7 AVAILABILITY BANNER
+======================== -->
+<div class="availability-banner" aria-label="Availability">
+    <p>Day or night, your freight is covered. We're available 24/7/365.</p>
+</div>
+
+<!-- ========================
+     FOOTER
+======================== -->
+<footer class="footer" aria-label="Site footer">
+    <div class="footer-main">
+        <div class="footer-brand">
+            <img src="https://img1.wsimg.com/isteam/ip/7126f5a4-6aec-49a2-ab3c-8a499e39bc43/Isuza_Logistics_PNG_File-01.png/:/rs=h:110,cg:true,m/qt=q:95" alt="Isunza Logistics Inc.">
+            <p>Full-truckload freight brokerage based in Orland Park, IL. 10+ years moving freight across all lanes and equipment types.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#carriers">Carriers</a></li>
+                <li><a href="#careers">Careers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+                <li><a href="tel:6306724916">(630) 672-4916</a></li>
+                <li><a href="mailto:Josh@Isunza-Logistics.com">Josh@Isunza-Logistics.com</a></li>
+                <li><a href="#contact">15255 S 94th Ave, Suite 500, Orland Park, IL 60462</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Isunza Logistics Inc. All Rights Reserved.</p>
+        <div class="footer-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms &amp; Conditions</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    (function () {
+        var hamburger = document.getElementById('hamburger');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            var spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '';
+            spans[1].style.transform = '';
+            spans[2].style.transform = '';
+        }
+
+        hamburger.addEventListener('click', function () {
+            var isOpen = mobileMenu.classList.contains('open');
+            if (isOpen) {
+                closeMenu();
+            } else {
+                mobileMenu.classList.add('open');
+                hamburger.setAttribute('aria-expanded', 'true');
+                var spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+                spans[1].style.opacity = '0';
+                spans[1].style.transform = 'scaleX(0)';
+                spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+            }
+        });
+
+        mobileLinks.forEach(function (link) {
+            link.addEventListener('click', closeMenu);
+        });
+    })();
+</script>
+
+</body>
+</html>
