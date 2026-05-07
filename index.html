@@ -439,6 +439,7 @@
             font-size: 2rem;
             margin-bottom: 14px;
             display: block;
+            color: #e20613;
         }
 
         .service-tag {
@@ -1271,6 +1272,24 @@
                 font-size: 1rem;
             }
         }
+
+        /* ========================
+           RESPONSIVE — MOBILE 768px
+        ======================== */
+        @media (max-width: 768px) {
+
+            /* Fix 1: Ensure hero slide images are fully visible on mobile */
+            .hero-slide {
+                background-position: center center;
+                background-size: cover;
+            }
+
+            /* Fix 4: Solidify "Become a Carrier" outline button on dark hero */
+            .btn-secondary {
+                border-color: #ffffff;
+                color: #ffffff;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1366,7 +1385,7 @@
         </div>
         <div class="trust-item trust-divider">
             <span class="trust-icon"><i class="fa-solid fa-location-dot"></i></span>
-            <span class="trust-number">Live</span>
+            <span class="trust-number">Real-Time</span>
             <span class="trust-label">Tracking on Every Load</span>
         </div>
         <div class="trust-item">
@@ -1388,37 +1407,37 @@
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <span class="service-icon">&#10052;&#65039;</span>
+                <span class="service-icon"><i class="fa-solid fa-snowflake"></i></span>
                 <span class="service-tag">Temperature Controlled</span>
                 <h3>Reefer</h3>
                 <p>Perishable goods, pharmaceuticals, and temperature-sensitive freight moved in properly maintained reefer units with precise monitoring throughout transit.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#128666;</span>
+                <span class="service-icon"><i class="fa-solid fa-box"></i></span>
                 <span class="service-tag">Standard Freight</span>
                 <h3>Dry Van</h3>
                 <p>The workhorse of freight. We move boxed, palletized, and general dry goods across all lanes — regional, long-haul, and coast-to-coast.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#9874;&#65039;</span>
+                <span class="service-icon"><i class="fa-solid fa-truck-moving"></i></span>
                 <span class="service-tag">Heavy Haul</span>
                 <h3>Flatbed &amp; Oversized</h3>
                 <p>Machinery, structural steel, building materials, and oversize loads handled with proper permitting, rigging, and routing coordination.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#9889;</span>
+                <span class="service-icon"><i class="fa-solid fa-van-shuttle"></i></span>
                 <span class="service-tag">Expedited</span>
                 <h3>Sprinter Vans &amp; Hot Shots</h3>
                 <p>Time-critical freight that can't wait for a full truck. Fast, direct point-to-point delivery for urgent shipments with a tight timeline.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#128268;</span>
+                <span class="service-icon"><i class="fa-solid fa-plug"></i></span>
                 <span class="service-tag">Flexible</span>
                 <h3>Power Only</h3>
                 <p>You manage the trailer, we provide the truck. Power-only service for shippers who run their own trailer pools and need reliable tractor capacity.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#128278;</span>
+                <span class="service-icon"><i class="fa-solid fa-trailer"></i></span>
                 <span class="service-tag">Drop &amp; Hook</span>
                 <h3>Drop Trailer</h3>
                 <p>Streamlined dock operations with drop trailer solutions — reducing dwell time, improving throughput, and keeping your yard moving on schedule.</p>
