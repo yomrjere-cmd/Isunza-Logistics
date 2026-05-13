@@ -277,14 +277,36 @@
             z-index: 0;
         }
 
+        @keyframes kenburns1 {
+            0%   { transform: scale(1.12) translate(0, 0); }
+            100% { transform: scale(1.0)  translate(0, 0); }
+        }
+
+        @keyframes kenburns2 {
+            0%   { transform: scale(1.1) translateX(-2%); }
+            100% { transform: scale(1.05) translateX(2%); }
+        }
+
+        @keyframes kenburns3 {
+            0%   { transform: scale(1.08) translate(2%, -1%); }
+            100% { transform: scale(1.02) translate(-2%, 1%); }
+        }
+
         .hero-slide {
             position: absolute;
             inset: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hero-slide-bg {
+            position: absolute;
+            inset: -8%;
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+            will-change: transform;
         }
 
         .hero-slide::after {
@@ -292,10 +314,23 @@
             position: absolute;
             inset: 0;
             background: rgba(0,0,0,0.55);
+            z-index: 1;
         }
 
         .hero-slide.active {
             opacity: 1;
+        }
+
+        .hero-slide:nth-child(1).active .hero-slide-bg {
+            animation: kenburns1 6.5s ease-out forwards;
+        }
+
+        .hero-slide:nth-child(2).active .hero-slide-bg {
+            animation: kenburns2 6.5s ease-out forwards;
+        }
+
+        .hero-slide:nth-child(3).active .hero-slide-bg {
+            animation: kenburns3 6.5s ease-out forwards;
         }
 
         .hero .container {
@@ -1154,14 +1189,12 @@
         #loading-screen {
             position: fixed;
             inset: 0;
-            z-index: 99999;
+            z-index: 9999;
             background: #0A1628;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 36px;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.8s ease;
         }
 
         #loading-screen.fade-out {
@@ -1169,31 +1202,59 @@
             pointer-events: none;
         }
 
-        .loading-logo {
-            height: 110px;
-            width: auto;
-            display: block;
-        }
-
-        .loading-grid {
+        #loading-grid {
+            position: absolute;
+            inset: 0;
             display: grid;
-            grid-template-columns: repeat(8, 14px);
-            gap: 5px;
+            overflow: hidden;
+            align-content: start;
         }
 
         .ls-sq {
-            width: 14px;
-            height: 14px;
-            background: #CC0000;
-            border-radius: 2px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(226, 6, 19, 0);
+            background: transparent;
             opacity: 0;
-            transform: scale(0.2);
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            transition: opacity 0.5s ease, border-color 0.5s ease, background 0.5s ease, box-shadow 0.5s ease;
         }
 
         .ls-sq.lit {
             opacity: 1;
-            transform: scale(1);
+            border-color: rgba(226, 6, 19, 0.3);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 0 6px rgba(226, 6, 19, 0.15), inset 0 0 4px rgba(30, 100, 200, 0.08);
+        }
+
+        .loading-center {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .loading-logo {
+            width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .loading-bar-track {
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: #e20613;
+            border-radius: 2px;
+            transition: width 2s ease-in-out;
         }
 
         /* ========================
@@ -1481,8 +1542,13 @@
      LOADING SCREEN
 ======================== -->
 <div id="loading-screen" aria-hidden="true">
-    <img class="loading-logo" src="https://img1.wsimg.com/isteam/ip/7126f5a4-6aec-49a2-ab3c-8a499e39bc43/Isuza_Logistics_PNG_File-01.png/:/rs=h:110,cg:true,m/qt=q:95" alt="Isunza Logistics">
-    <div class="loading-grid" id="loading-grid"></div>
+    <div id="loading-grid"></div>
+    <div class="loading-center">
+        <img class="loading-logo" src="https://img1.wsimg.com/isteam/ip/7126f5a4-6aec-49a2-ab3c-8a499e39bc43/Isuza_Logistics_PNG_File-01.png/:/rs=h:110,cg:true,m/qt=q:95" alt="Isunza Logistics">
+        <div class="loading-bar-track">
+            <div class="loading-bar-fill" id="loading-bar-fill"></div>
+        </div>
+    </div>
 </div>
 
 <!-- ========================
@@ -1534,9 +1600,15 @@
 ======================== -->
 <section class="hero" id="hero" aria-label="Hero">
     <div class="hero-slides" aria-hidden="true">
-        <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=80')"></div>
-        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1600&q=80')"></div>
-        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1463947628408-f8581a2f4aca?w=1600&q=80')"></div>
+        <div class="hero-slide active">
+            <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=80')"></div>
+        </div>
+        <div class="hero-slide">
+            <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1600&q=80')"></div>
+        </div>
+        <div class="hero-slide">
+            <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1463947628408-f8581a2f4aca?w=1600&q=80')"></div>
+        </div>
     </div>
     <div class="container">
         <div class="hero-content">
@@ -1891,41 +1963,81 @@
 </footer>
 
 <script>
-    // Hero slideshow
+    // Preload hero images
+    (function () {
+        var urls = [
+            'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=80',
+            'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1600&q=80',
+            'https://images.unsplash.com/photo-1463947628408-f8581a2f4aca?w=1600&q=80'
+        ];
+        urls.forEach(function (u) { var img = new Image(); img.src = u; });
+    })();
+
+    // Hero Ken Burns slideshow
     (function () {
         var slides = document.querySelectorAll('.hero-slide');
         var current = 0;
-        setInterval(function () {
+
+        function switchSlide() {
             slides[current].classList.remove('active');
             current = (current + 1) % slides.length;
+            var bg = slides[current].querySelector('.hero-slide-bg');
+            bg.style.animation = 'none';
+            void bg.offsetWidth;
+            bg.style.animation = '';
             slides[current].classList.add('active');
-        }, 4000);
+        }
+
+        setInterval(switchSlide, 5000);
     })();
 
     // Loading screen
     (function () {
-        var grid = document.getElementById('loading-grid');
         var screen = document.getElementById('loading-screen');
-        var cols = 8, rows = 6;
-        var squares = [];
 
-        for (var i = 0; i < rows * cols; i++) {
+        if (sessionStorage.getItem('ilLoadingPlayed')) {
+            screen.style.display = 'none';
+            return;
+        }
+        sessionStorage.setItem('ilLoadingPlayed', '1');
+
+        var grid = document.getElementById('loading-grid');
+        var cols = Math.ceil(window.innerWidth / 40) + 1;
+        var rows = Math.ceil(window.innerHeight / 40) + 1;
+        var total = cols * rows;
+
+        grid.style.gridTemplateColumns = 'repeat(' + cols + ', 40px)';
+
+        var squares = [];
+        for (var i = 0; i < total; i++) {
             var sq = document.createElement('div');
             sq.className = 'ls-sq';
             grid.appendChild(sq);
             squares.push(sq);
         }
 
-        squares.forEach(function (sq, idx) {
-            setTimeout(function () { sq.classList.add('lit'); }, 150 + idx * 45);
+        var order = squares.slice();
+        for (var i = order.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = order[i]; order[i] = order[j]; order[j] = tmp;
+        }
+
+        order.forEach(function (sq, idx) {
+            setTimeout(function () { sq.classList.add('lit'); }, (idx / total) * 1500);
         });
 
         setTimeout(function () {
+            var bar = document.getElementById('loading-bar-fill');
+            if (bar) bar.style.width = '100%';
+        }, 50);
+
+        setTimeout(function () {
             screen.classList.add('fade-out');
-            setTimeout(function () { screen.style.display = 'none'; }, 650);
-        }, 2500);
+            setTimeout(function () { screen.style.display = 'none'; }, 850);
+        }, 3000);
     })();
 
+    // Mobile nav
     (function () {
         var hamburger = document.getElementById('hamburger');
         var mobileMenu = document.getElementById('mobile-menu');
