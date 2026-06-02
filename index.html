@@ -372,9 +372,49 @@
         .hero-sub {
             font-size: 1.15rem;
             color: rgba(255,255,255,0.85);
-            margin-bottom: 42px;
+            margin-bottom: 28px;
             max-width: 560px;
             line-height: 1.65;
+        }
+
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            margin-bottom: 36px;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0 24px;
+        }
+
+        .hero-stat:first-child {
+            padding-left: 0;
+        }
+
+        .hero-stat-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .hero-stat-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.35);
+            flex-shrink: 0;
         }
 
         .hero-ctas {
@@ -384,62 +424,51 @@
         }
 
         /* ========================
-           TRUST BAR
+           PARTNER LOGOS (inside hero)
         ======================== */
-        .trust-bar {
-            background: #0A1628;
-            border-top: 3px solid var(--red);
-            padding: 44px 28px;
+        .partner-logos {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 30px;
+            margin-top: 36px;
         }
 
-        .trust-bar-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            max-width: 1080px;
-            margin: 0 auto;
+        .partner-logos-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
         }
 
-        .trust-item {
-            text-align: center;
-            color: #fff;
-            padding: 0 12px;
-        }
-
-        .trust-divider {
-            border-right: 1px solid rgba(255,255,255,0.12);
-        }
-
-        .trust-icon {
-            font-size: 1.65rem;
-            margin-bottom: 12px;
-            display: block;
-            line-height: 1;
-            color: var(--red);
-        }
-
-        .trust-number {
-            font-size: 1.85rem;
-            font-weight: 700;
-            color: var(--red);
-            display: block;
-            line-height: 1.1;
-            margin-bottom: 5px;
-        }
-
-        .trust-label {
-            font-size: 0.78rem;
+        .partner-logos-label {
+            color: #ffffff;
             font-weight: 600;
-            color: rgba(255,255,255,0.65);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .partner-logos-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: nowrap;
+        }
+
+        .partner-logos-row img {
+            max-height: 100px;
+            width: auto;
+            display: block;
+            background: none;
+            padding: 0;
+            border-radius: 0;
         }
 
         /* ========================
            SERVICES
         ======================== */
         .services {
-            background: #ffffff;
+            background: #f5f5f5;
             padding: 88px 28px;
         }
 
@@ -456,23 +485,23 @@
         }
 
         .service-card {
-            background: #fff;
-            border-radius: 8px;
+            background: #ffffff;
+            border-radius: 0 8px 8px 0;
             padding: 32px 26px;
-            box-shadow: 0 2px 18px rgba(0,0,0,0.07);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
             transition: transform 0.22s, box-shadow 0.22s;
-            border-top: 3px solid transparent;
+            border-left: 4px solid #e20613;
         }
 
         .service-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-            border-top-color: var(--red);
         }
 
         .service-icon {
             font-size: 2rem;
-            margin-bottom: 14px;
+            color: #0A1628;
+            margin-bottom: 16px;
             display: block;
         }
 
@@ -1128,15 +1157,6 @@
                 font-size: 2.8rem;
             }
 
-            .trust-bar-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
-
-            .trust-divider {
-                border-right: none;
-            }
-
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1318,29 +1338,21 @@
                 box-sizing: border-box;
             }
 
-            /* ---- TRUST BAR ---- */
-            .trust-bar {
-                padding: 0 20px;
+            /* ---- PARTNER LOGOS ---- */
+            .partner-logos {
+                padding-top: 24px;
+                margin-top: 28px;
             }
 
-            .trust-bar-grid {
-                grid-template-columns: 1fr;
-                gap: 0;
+            .partner-logos-row {
+                flex-wrap: wrap;
+                gap: 20px;
             }
 
-            .trust-item,
-            .trust-item.trust-divider {
-                border-right: none;
-                border-bottom: 2px solid #e20613;
-                padding: 24px 12px;
-            }
-
-            .trust-item:last-child {
-                border-bottom: none;
-            }
-
-            .trust-number {
-                font-size: 1.6rem;
+            .partner-logos-row img {
+                max-height: 70px;
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
             }
 
             /* ---- SERVICES ---- */
@@ -1513,7 +1525,6 @@
             }
 
             /* Enforce minimum readable font size */
-            .trust-label,
             .col-label,
             .form-group label,
             .footer-col h4,
@@ -1615,38 +1626,37 @@
             <span class="hero-eyebrow">Full-Truckload Freight Brokerage &mdash; Orland Park, IL</span>
             <h1>We Do the Small Things Right.<br><span>The Rest Follows.</span></h1>
             <p class="hero-sub">We connect shippers with vetted, compliant carriers — handling every detail from dispatch to delivery so you can focus on running your business.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-value">10+</span>
+                    <span class="hero-stat-label">Years Experience</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">24/7/365</span>
+                    <span class="hero-stat-label">Available</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">Real-Time</span>
+                    <span class="hero-stat-label">Tracking</span>
+                </div>
+            </div>
             <div class="hero-ctas">
                 <a href="#contact" class="btn btn-primary">Request a Quote</a>
                 <a href="#carriers" class="btn btn-secondary">Become a Carrier</a>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========================
-     TRUST BAR
-======================== -->
-<section class="trust-bar" aria-label="Company highlights">
-    <div class="trust-bar-grid">
-        <div class="trust-item trust-divider">
-            <span class="trust-icon"><i class="fa-solid fa-medal"></i></span>
-            <span class="trust-number">10+</span>
-            <span class="trust-label">Years of Experience</span>
-        </div>
-        <div class="trust-item trust-divider">
-            <span class="trust-icon"><i class="fa-solid fa-headset"></i></span>
-            <span class="trust-number">24/7/365</span>
-            <span class="trust-label">Support Available</span>
-        </div>
-        <div class="trust-item trust-divider">
-            <span class="trust-icon"><i class="fa-solid fa-location-dot"></i></span>
-            <span class="trust-number">Live</span>
-            <span class="trust-label">Tracking on Every Load</span>
-        </div>
-        <div class="trust-item">
-            <span class="trust-icon"><i class="fa-solid fa-user-tie"></i></span>
-            <span class="trust-number">1</span>
-            <span class="trust-label">Dedicated Point of Contact</span>
+            <div class="partner-logos" aria-label="Trusted partners">
+                <div class="partner-logos-inner">
+                    <span class="partner-logos-label">Trusted by:</span>
+                    <div class="partner-logos-row">
+                        <img src="./cargonet.png" alt="CargoNet">
+                        <img src="./tapa.png" alt="TAPA Americas">
+                        <img src="./freightvalidate.png" alt="Freight Validate">
+                        <img src="./carrier411.png" alt="Carrier411">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -1662,40 +1672,40 @@
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <span class="service-icon">&#10052;&#65039;</span>
+                <span class="service-icon"><i class="fas fa-snowflake"></i></span>
                 <span class="service-tag">Temperature Controlled</span>
                 <h3>Reefer</h3>
-                <p>Perishable goods, pharmaceuticals, and temperature-sensitive freight moved in properly maintained reefer units with precise monitoring throughout transit.</p>
+                <p>Temperature controlled from pickup to delivery. Pharma, perishables, and sensitive freight handled with precision.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#128666;</span>
+                <span class="service-icon"><i class="fas fa-box-open"></i></span>
                 <span class="service-tag">Standard Freight</span>
                 <h3>Dry Van</h3>
-                <p>The workhorse of freight. We move boxed, palletized, and general dry goods across all lanes — regional, long-haul, and coast-to-coast.</p>
+                <p>Boxed, palletized, and general freight across all lanes. Regional, long-haul, coast-to-coast.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#9874;&#65039;</span>
+                <span class="service-icon"><i class="fas fa-truck-moving"></i></span>
                 <span class="service-tag">Heavy Haul</span>
                 <h3>Flatbed &amp; Oversized</h3>
-                <p>Machinery, structural steel, building materials, and oversize loads handled with proper permitting, rigging, and routing coordination.</p>
+                <p>Heavy machinery, steel, and oversize loads with proper permitting and routing.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#9889;</span>
+                <span class="service-icon"><i class="fas fa-van-shuttle"></i></span>
                 <span class="service-tag">Expedited</span>
                 <h3>Sprinter Vans &amp; Hot Shots</h3>
-                <p>Time-critical freight that can't wait for a full truck. Fast, direct point-to-point delivery for urgent shipments with a tight timeline.</p>
+                <p>Time-critical freight that can't wait for a full truck. Direct point-to-point, fast.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#128268;</span>
+                <span class="service-icon"><i class="fas fa-plug"></i></span>
                 <span class="service-tag">Flexible</span>
                 <h3>Power Only</h3>
-                <p>You manage the trailer, we provide the truck. Power-only service for shippers who run their own trailer pools and need reliable tractor capacity.</p>
+                <p>You have the trailer. We bring the truck. Reliable tractor capacity when you need it.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">&#128278;</span>
+                <span class="service-icon"><i class="fas fa-truck-ramp-box"></i></span>
                 <span class="service-tag">Drop &amp; Hook</span>
                 <h3>Drop Trailer</h3>
-                <p>Streamlined dock operations with drop trailer solutions — reducing dwell time, improving throughput, and keeping your yard moving on schedule.</p>
+                <p>Drop and hook solutions that keep your dock moving and reduce dwell time.</p>
             </div>
         </div>
     </div>
