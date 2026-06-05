@@ -490,8 +490,16 @@
            SERVICES
         ======================== */
         .services {
-            background: #0A1628;
+            background-color: #0A1628;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 40px 40px;
             padding: 88px 28px;
+        }
+
+        .services .container {
+            position: relative;
         }
 
         .services .section-header h2 {
@@ -499,7 +507,7 @@
         }
 
         .services .section-header p {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
             opacity: 1;
         }
 
@@ -512,24 +520,38 @@
         }
 
         .service-card {
-            background: #ffffff;
-            border-radius: 0 8px 8px 0;
-            padding: 32px 26px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            transition: transform 0.22s, box-shadow 0.22s;
-            border-left: 4px solid #e20613;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid #e20613;
+            border-radius: 8px;
+            padding: 32px 28px;
+            box-shadow: none;
+            transition: all 0.3s ease;
         }
 
         .service-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            background: rgba(255, 255, 255, 0.09);
+            box-shadow: 0 8px 30px rgba(226, 6, 19, 0.15);
+            border-color: rgba(226, 6, 19, 0.4);
         }
 
         .service-icon {
-            font-size: 2rem;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(226, 6, 19, 0.1);
+            border: 1px solid rgba(226, 6, 19, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .service-icon i {
+            font-size: 2.2rem;
             color: #e20613;
-            margin-bottom: 16px;
-            display: block;
         }
 
         .service-tag {
@@ -538,7 +560,7 @@
             color: var(--red);
             font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 0.08em;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             padding: 3px 10px;
             border-radius: 20px;
@@ -546,16 +568,16 @@
         }
 
         .service-card h3 {
-            font-size: 1.08rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 10px;
+            color: #ffffff;
+            margin-bottom: 8px;
         }
 
         .service-card p {
-            font-size: 0.88rem;
-            color: #555;
-            line-height: 1.65;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
         }
 
         /* ========================
@@ -1833,37 +1855,37 @@
                 <span class="service-icon"><i class="fas fa-snowflake"></i></span>
                 <span class="service-tag">Temperature Controlled</span>
                 <h3>Reefer</h3>
-                <p>Temperature controlled from pickup to delivery. Pharma, perishables, and sensitive freight handled with precision.</p>
+                <p>Temp-sensitive freight needs more than a reefer unit — it needs a broker who verifies compliance before the truck rolls.</p>
             </div>
             <div class="service-card">
                 <span class="service-icon"><i class="fas fa-box-open"></i></span>
                 <span class="service-tag">Standard Freight</span>
                 <h3>Dry Van</h3>
-                <p>Boxed, palletized, and general freight across all lanes. Regional, long-haul, coast-to-coast.</p>
+                <p>Reliable dry van capacity across regional and nationwide lanes, backed by carrier vetting and consistent communication.</p>
             </div>
             <div class="service-card">
                 <span class="service-icon"><i class="fas fa-truck-moving"></i></span>
                 <span class="service-tag">Heavy Haul</span>
                 <h3>Flatbed &amp; Oversized</h3>
-                <p>Heavy machinery, steel, and oversize loads with proper permitting and routing.</p>
+                <p>Machinery, steel, and oversized freight requiring permits, escorts, and routing that most brokers won't touch.</p>
             </div>
             <div class="service-card">
                 <span class="service-icon"><i class="fas fa-van-shuttle"></i></span>
                 <span class="service-tag">Expedited</span>
                 <h3>Sprinter Vans &amp; Hot Shots</h3>
-                <p>Time-critical freight that can't wait for a full truck. Direct point-to-point, fast.</p>
+                <p>When a full truck is overkill and waiting isn't an option — direct point-to-point, same day if needed.</p>
             </div>
             <div class="service-card">
                 <span class="service-icon"><i class="fas fa-plug"></i></span>
                 <span class="service-tag">Flexible</span>
                 <h3>Power Only</h3>
-                <p>You have the trailer. We bring the truck. Reliable tractor capacity when you need it.</p>
+                <p>You own the trailer. We find the truck. Power-only capacity for shippers who run their own equipment.</p>
             </div>
             <div class="service-card">
                 <span class="service-icon"><i class="fas fa-truck-ramp-box"></i></span>
                 <span class="service-tag">Drop &amp; Hook</span>
                 <h3>Drop Trailer</h3>
-                <p>Drop and hook solutions that keep your dock moving and reduce dwell time.</p>
+                <p>Keep your dock moving. Drop trailer programs that eliminate wait time and fit your yard operations.</p>
             </div>
         </div>
     </div>
