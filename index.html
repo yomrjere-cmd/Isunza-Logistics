@@ -19,6 +19,11 @@
 
         html {
             scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
         }
 
         body {
@@ -288,11 +293,13 @@
            HERO
         ======================== */
         .hero {
-            min-height: 100vh;
+            height: 75vh;
+            min-height: 540px;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            margin-bottom: 0;
         }
 
         @keyframes heroZoom {
@@ -315,6 +322,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center center;
         }
 
         .hero-overlay {
@@ -333,8 +341,8 @@
         }
 
         .hero-content {
-            max-width: 720px;
-            padding: 80px 0;
+            max-width: 860px;
+            padding: 0;
         }
 
         .hero-eyebrow {
@@ -355,7 +363,7 @@
             font-weight: 700;
             color: #fff;
             line-height: 1.1;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             letter-spacing: -0.02em;
         }
 
@@ -366,23 +374,23 @@
         .hero-sub {
             font-size: 1.15rem;
             color: rgba(255,255,255,0.85);
-            margin-bottom: 32px;
-            max-width: 540px;
+            margin-bottom: 20px;
+            max-width: 580px;
             line-height: 1.72;
         }
 
         .hero-stats {
             display: flex;
             align-items: center;
-            margin-top: 8px;
-            margin-bottom: 44px;
+            margin-top: 4px;
+            margin-bottom: 28px;
         }
 
         .hero-stat {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 0 32px;
+            padding: 0 20px;
         }
 
         .hero-stat:first-child {
@@ -390,11 +398,12 @@
         }
 
         .hero-stat-value {
-            font-size: 1.4rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: #fff;
             line-height: 1.2;
-            margin-bottom: 4px;
+            white-space: nowrap;
+            margin-bottom: 2px;
         }
 
         .hero-stat-label {
@@ -428,44 +437,83 @@
         }
 
         /* ========================
-           PARTNER LOGOS (inside hero)
+           PARTNER SECTION
         ======================== */
-        .partner-logos {
-            border-top: 1px solid rgba(255,255,255,0.18);
-            padding-top: 30px;
-            margin-top: 52px;
-        }
-
-        .partner-logos-inner {
+        .partner-section {
+            background: #f0f0f0;
+            padding: 15px 40px 20px;
+            overflow: hidden;
+            text-align: center;
+            margin-top: 0;
+            min-height: calc(25vh - 80px);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .partner-logos-label {
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 1rem;
-            white-space: nowrap;
-        }
-
-        .partner-logos-row {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
             justify-content: center;
-            gap: 40px;
+            align-items: center;
+            border-top: 1px solid rgba(10,22,40,0.1);
+            border-bottom: 1px solid rgba(10,22,40,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .partner-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .partner-section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #0A1628;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .partner-section-accent {
+            width: 30px;
+            height: 2px;
+            background: #e20613;
+            margin: 6px auto 12px auto;
+        }
+
+        .partner-section-logos {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 12px;
             flex-wrap: nowrap;
         }
 
-        .partner-logos-row img {
-            max-height: 100px;
+        .partner-logo-wrap {
+            background: #0A1628;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-top: 3px solid #e20613;
+            border-radius: 8px;
+            min-width: 150px;
+            min-height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 14px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .partner-logo-wrap:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(226,6,19,0.22);
+        }
+
+        .partner-logo-wrap img {
+            height: 50px;
             width: auto;
+            max-width: 110px;
+            object-fit: contain;
             display: block;
-            background: none;
-            padding: 0;
-            border-radius: 0;
+            margin: 0 auto;
         }
 
         /* ========================
@@ -892,90 +940,154 @@
            CAREERS
         ======================== */
         .careers {
-            background: #ffffff;
-            padding: 88px 28px;
+            background: #0A1628;
+            padding: 96px 28px 108px;
+            scroll-margin-top: 80px;
         }
 
         .careers-inner {
-            max-width: 960px;
+            max-width: 1020px;
             margin: 0 auto;
+        }
+
+        .careers-layout {
+            display: grid;
+            grid-template-columns: 55fr 45fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .careers-roles {
+            border-left: 3px solid #e20613;
+            padding-left: 28px;
         }
 
         .careers-inner h2 {
             font-size: 2.2rem;
             font-weight: 700;
-            color: #0A1628;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
         }
 
         .careers-intro {
-            font-size: 0.98rem;
-            color: #0A1628;
-            line-height: 1.8;
-            margin-bottom: 44px;
-            max-width: 700px;
-        }
-
-        .careers-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 52px;
-            align-items: start;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.68);
+            line-height: 1.85;
+            margin-bottom: 36px;
+            max-width: 460px;
         }
 
         .col-label {
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            color: rgba(10,22,40,0.55);
+            color: rgba(10,22,40,0.5);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 18px;
+            letter-spacing: 0.14em;
+            margin-bottom: 16px;
+        }
+
+        .careers-roles .col-label {
+            color: rgba(255,255,255,0.42);
         }
 
         .careers-roles ul {
             list-style: none;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: 10px;
         }
 
         .careers-roles li {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            font-size: 0.98rem;
-            color: var(--navy);
+            font-size: 0.83rem;
+            color: #ffffff;
             font-weight: 600;
-            padding: 14px 18px;
+            padding: 9px 18px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-left: 3px solid #e20613;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+        }
+
+        .careers-roles li:hover {
+            background: rgba(255,255,255,0.13);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .careers-offer {
             background: #ffffff;
-            border-radius: 6px;
-            border-left: 4px solid var(--red);
+            border-radius: 12px;
+            padding: 36px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.26);
+            border-top: 4px solid #e20613;
         }
 
         .careers-offer ul {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 13px;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
         .careers-offer li {
-            font-size: 0.9rem;
+            font-size: 0.97rem;
             color: #0A1628;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            line-height: 1.55;
+            gap: 12px;
+            line-height: 1.65;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(10,22,40,0.07);
         }
 
-        .careers-offer li::before {
-            content: '→';
-            color: var(--red);
-            font-weight: 700;
+        .careers-offer li:last-child {
+            border-bottom: none;
+        }
+
+        .careers-offer li i {
+            color: #e20613;
+            font-size: 0.9rem;
             flex-shrink: 0;
-            font-size: 0.95rem;
+            margin-top: 3px;
+        }
+
+        .careers-offer .btn-primary {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            font-size: 1rem;
+            border-radius: 8px;
+            letter-spacing: 0.02em;
+            box-sizing: border-box;
+            transition: all 0.25s ease;
+        }
+
+        .careers-offer .btn-primary:hover {
+            background: #c00011;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(226,6,19,0.38);
+        }
+
+        .careers [data-fade] {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .careers [data-fade].fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .careers a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
         }
 
         /* ========================
@@ -1500,7 +1612,8 @@
             }
 
             .nav-logo img {
-                height: 45px;
+                max-height: 50px;
+                height: auto;
             }
 
             .nav-cta {
@@ -1515,31 +1628,53 @@
             }
 
             .hero {
-                padding-top: 80px;
+                height: auto;
+                min-height: 0;
+                padding-top: 0;
                 background-image: url('./hero-bg.jpg');
                 background-size: cover;
                 background-position: center;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-sub {
-                font-size: 1rem;
-                max-width: 100%;
+                align-items: flex-start;
             }
 
             .hero-content {
-                padding: 100px 0 60px;
+                padding: 80px 20px 48px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                text-align: center;
+                margin-bottom: 14px;
+            }
+
+            .hero-sub {
+                font-size: 0.9rem;
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 16px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+
+            .hero-stat-divider {
+                display: none;
             }
 
             .hero-stat {
-                padding: 0 12px;
+                padding: 0;
             }
 
             .hero-stat-value {
-                font-size: 0.88rem;
+                font-size: 0.95rem;
+                white-space: normal;
             }
 
             .hero-stat-label {
@@ -1549,6 +1684,7 @@
             .hero-ctas {
                 flex-direction: column;
                 gap: 12px;
+                align-items: stretch;
             }
 
             .hero-ctas .btn {
@@ -1557,26 +1693,29 @@
                 box-sizing: border-box;
             }
 
-            /* ---- PARTNER LOGOS ---- */
-            .partner-logos {
-                padding-top: 24px;
-                margin-top: 28px;
+            /* ---- PARTNER SECTION ---- */
+            .partner-section {
+                min-height: 0;
+                padding: 16px 20px;
             }
 
-            .partner-logos-inner {
-                align-items: center;
-            }
-
-            .partner-logos-row {
+            .partner-section-logos {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-                justify-items: center;
+                gap: 12px;
             }
 
-            .partner-logos-row img {
+            .partner-logo-wrap {
+                width: 100%;
+                min-height: 70px;
+                flex-shrink: 1;
+                justify-content: center;
+            }
+
+            .partner-logo-wrap img {
+                height: auto;
                 max-height: 50px;
-                width: auto;
+                max-width: 100px;
             }
 
             /* ---- SERVICES ---- */
@@ -1585,18 +1724,44 @@
                 gap: 12px;
             }
 
+            .service-card-inner {
+                min-height: 240px;
+            }
+
+            .service-card-front,
+            .service-card-back {
+                padding: 20px;
+            }
+
+            .service-icon i {
+                font-size: 1.5rem;
+            }
+
             .service-card-front h3,
             .service-card-back h3 {
                 font-size: 1rem;
             }
 
+            .service-teaser,
             .service-card-back p {
-                font-size: 0.82rem;
+                font-size: 0.85rem;
             }
 
             /* ---- HOW IT WORKS ---- */
             .steps-connector {
+                grid-template-columns: 1fr;
                 max-width: 100%;
+                gap: 0;
+            }
+
+            .step-divider {
+                height: 32px;
+                padding-top: 0;
+                align-items: center;
+            }
+
+            .step-divider i {
+                transform: rotate(90deg);
             }
 
             .step {
@@ -1609,12 +1774,12 @@
             }
 
             .why-card {
-                padding: 28px 24px;
-                margin-bottom: 16px;
+                padding: 20px;
+                margin-bottom: 0;
             }
 
             .why-card p {
-                font-size: 0.95rem;
+                font-size: 0.85rem;
                 line-height: 1.7;
             }
 
@@ -1637,8 +1802,8 @@
             }
 
             /* ---- CAREERS ---- */
-            .careers-inner {
-                text-align: center;
+            .careers {
+                padding: 56px 20px 64px;
             }
 
             .careers-layout {
@@ -1646,34 +1811,40 @@
                 gap: 32px;
             }
 
-            .careers-roles ul,
-            .careers-offer ul {
-                text-align: left;
+            .careers-roles {
+                border-left: none;
+                padding-left: 0;
             }
 
-            .careers-roles li,
+            .careers-inner h2 {
+                font-size: 1.75rem;
+            }
+
+            .careers-intro {
+                font-size: 0.92rem;
+                max-width: 100%;
+            }
+
+            .careers-roles li {
+                font-size: 0.82rem;
+                padding: 8px 14px;
+            }
+
+            .careers-offer {
+                border-radius: 8px;
+                padding: 24px 20px;
+            }
+
             .careers-offer li {
-                font-size: 0.9rem;
-                margin-bottom: 10px;
+                font-size: 0.93rem;
+                padding: 11px 0;
             }
 
-            .careers-offer .btn {
-                width: 100%;
-                text-align: center;
-                display: block;
-                box-sizing: border-box;
-            }
-
-            .careers-inner h2,
             .carriers-inner h2 {
                 font-size: 1.8rem;
             }
 
             /* ---- ABOUT ---- */
-            .about {
-                padding: 40px 24px;
-            }
-
             .about-inner {
                 text-align: center;
             }
@@ -1767,7 +1938,7 @@
             .careers,
             .about,
             .contact {
-                padding: 50px 20px;
+                padding: 40px 20px;
             }
 
             p {
@@ -1824,7 +1995,7 @@
 <div id="loading-screen" aria-hidden="true">
     <div id="loading-grid"></div>
     <div class="loading-center">
-        <img class="loading-logo" src="https://img1.wsimg.com/isteam/ip/7126f5a4-6aec-49a2-ab3c-8a499e39bc43/Isuza_Logistics_PNG_File-01.png/:/rs=h:110,cg:true,m/qt=q:95" alt="Isunza Logistics">
+        <img class="loading-logo" src="./logo-white.png" alt="Isunza Logistics">
         <div class="loading-bar-track">
             <div class="loading-bar-fill" id="loading-bar-fill"></div>
         </div>
@@ -1842,7 +2013,7 @@
         <nav aria-label="Main navigation">
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#shippers">For Shippers</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#carriers">Carriers</a></li>
                 <li><a href="#careers">Careers</a></li>
@@ -1850,11 +2021,7 @@
             </ul>
         </nav>
         <div class="nav-right">
-            <div class="nav-info">
-                <span class="nav-info-avail">24/7/365</span>
-                <a href="tel:6306724916" class="nav-info-phone">(630) 672-4916</a>
-            </div>
-            <a href="#contact" class="nav-cta">Get a Quote</a>
+<a href="#contact" class="nav-cta">Get a Quote</a>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -1869,7 +2036,7 @@
         </div>
         <ul>
             <li><a href="#services" class="mobile-link">Services</a></li>
-            <li><a href="#how-it-works" class="mobile-link">How It Works</a></li>
+            <li><a href="#shippers" class="mobile-link">For Shippers</a></li>
             <li><a href="#about" class="mobile-link">About</a></li>
             <li><a href="#carriers" class="mobile-link">Carriers</a></li>
             <li><a href="#careers" class="mobile-link">Careers</a></li>
@@ -1892,41 +2059,50 @@
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="container">
         <div class="hero-content">
-            <span class="hero-eyebrow">Full-Truckload Freight Brokerage &mdash; Orland Park, IL</span>
-            <h1>Purpose in <span>Every Mile.</span></h1>
+<h1>Purpose in <span>Every Mile.</span></h1>
             <p class="hero-sub">We connect shippers with vetted, compliant carriers — handling every detail from dispatch to delivery so you can focus on running your business.</p>
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <span class="hero-stat-value">24/7/365</span>
-                    <span class="hero-stat-label">Available</span>
+                    <span class="hero-stat-value">Licensed &amp; Insured</span>
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
-                    <span class="hero-stat-value">Real-Time</span>
-                    <span class="hero-stat-label">Tracking</span>
+                    <span class="hero-stat-value">Real-Time Accountability</span>
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
-                    <span class="hero-stat-value">Nationwide</span>
-                    <span class="hero-stat-label">Coverage</span>
+                    <span class="hero-stat-value">National + International</span>
                 </div>
             </div>
-            <p class="hero-audience">Shippers &middot; Carriers &middot; Owner-Operators</p>
-            <div class="hero-ctas">
+<div class="hero-ctas">
                 <a href="#contact" class="btn btn-primary">Request a Quote</a>
                 <a href="#carriers" class="btn btn-secondary">Become a Carrier</a>
             </div>
-            <div class="partner-logos" aria-label="Trusted partners">
-                <div class="partner-logos-inner">
-                    <span class="partner-logos-label">Trusted by:</span>
-                    <div class="partner-logos-row">
-                        <img src="./cargonet.png" alt="CargoNet">
-                        <img src="./tapa.png" alt="TAPA Americas">
-                        <img src="./freightvalidate.png" alt="Freight Validate">
-                        <img src="./carrier411.png" alt="Carrier411">
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================
+     PARTNERS
+======================== -->
+<section class="partner-section" aria-label="Partnered with">
+    <p class="partner-section-label">Partnered With</p>
+    <div class="partner-section-accent"></div>
+    <div class="partner-section-logos">
+        <div class="partner-logo-wrap">
+            <img src="./cargonet.png" alt="CargoNet">
+        </div>
+        <div class="partner-logo-wrap">
+            <img src="./tapa.png" alt="TAPA Americas">
+        </div>
+        <div class="partner-logo-wrap">
+            <img src="./freightvalidate.png" alt="Freight Validate">
+        </div>
+        <div class="partner-logo-wrap">
+            <img src="./carrier411.png" alt="Carrier411">
+        </div>
+        <div class="partner-logo-wrap">
+            <img src="./smartway.png" alt="SmartWay">
         </div>
     </div>
 </section>
@@ -2042,42 +2218,9 @@
 </section>
 
 <!-- ========================
-     HOW IT WORKS
-======================== -->
-<section class="how-it-works" id="how-it-works">
-    <div class="container">
-        <div class="section-header">
-            <h2>Simple Process. Zero Surprises.</h2>
-            <p>From the first call to final delivery, we keep things straightforward and you stay informed the whole way through.</p>
-        </div>
-        <div class="steps-wrapper">
-            <div class="steps-connector">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Tell Us About Your Load</h3>
-                    <p>Share your origin, destination, equipment needs, and any special requirements. One call or email is all it takes to get started.</p>
-                </div>
-                <div class="step-divider" aria-hidden="true"><i class="fas fa-chevron-right"></i></div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>We Handle the Rest</h3>
-                    <p>We match, vet, and dispatch a fully compliant carrier. Every driver is screened through MyCarrierPackets and Carrier411 before they touch your freight.</p>
-                </div>
-                <div class="step-divider" aria-hidden="true"><i class="fas fa-chevron-right"></i></div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Stay Informed Until Delivery</h3>
-                    <p>Real-time updates from pickup to drop-off. Your rep talks directly to the driver — you'll know where your load is without having to chase anyone.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========================
      WHY ISUNZA
 ======================== -->
-<section class="why-isunza" id="why-isunza">
+<section class="why-isunza" id="shippers">
     <div class="container">
         <div class="section-header">
             <h2>Why Shippers Trust Isunza</h2>
@@ -2144,26 +2287,26 @@
 <section class="careers" id="careers">
     <div class="container">
         <div class="careers-inner">
-            <h2>Build Your Career at Isunza</h2>
-            <p class="careers-intro">We're a growing freight brokerage with a focused team and real room to advance. If you're motivated, coachable, and want to own your results — not just fill a seat — this is the kind of place where that work gets noticed. We offer direct mentorship from a 10+ year industry veteran, real responsibility from day one, and the structure to grow a book of business that's genuinely yours.</p>
             <div class="careers-layout">
-                <div class="careers-roles">
+                <div class="careers-roles" data-fade data-fade-delay="0">
+                    <h2>Build Your Career at Isunza</h2>
+                    <p class="careers-intro">We're a growing freight brokerage with a focused team and real room to advance. If you're motivated, coachable, and want to own your results — not just fill a seat — this is the kind of place where that work gets noticed.</p>
                     <p class="col-label">Currently Hiring</p>
                     <ul>
-                        <li><i class="fas fa-circle-check" style="color:#e20613;"></i>&nbsp; Freight Broker / Agent</li>
-                        <li><i class="fas fa-circle-check" style="color:#e20613;"></i>&nbsp; Dispatcher</li>
-                        <li><i class="fas fa-circle-check" style="color:#e20613;"></i>&nbsp; Account Manager</li>
-                        <li><i class="fas fa-circle-check" style="color:#e20613;"></i>&nbsp; Operations Coordinator</li>
+                        <li>Freight Broker / Agent</li>
+                        <li>Dispatcher</li>
+                        <li>Staff Accountant</li>
+                        <li>Operations Coordinator</li>
                     </ul>
                 </div>
-                <div class="careers-offer">
-                    <p class="col-label">What You Get</p>
+                <div class="careers-offer" data-fade data-fade-delay="0.15">
+                    <p class="col-label">Why Join Isunza</p>
                     <ul>
-                        <li>Competitive base pay with performance upside</li>
-                        <li>Mentorship from a 10+ year industry veteran</li>
-                        <li>Real ownership of your book of business from day one</li>
-                        <li>A tight-knit team where your contributions are visible</li>
-                        <li>No corporate red tape — results-driven culture, full stop</li>
+                        <li><i class="fas fa-circle-check"></i> Competitive base pay with performance upside</li>
+                        <li><i class="fas fa-circle-check"></i> Mentorship from a 10+ year industry veteran</li>
+                        <li><i class="fas fa-circle-check"></i> Real ownership of your book of business from day one</li>
+                        <li><i class="fas fa-circle-check"></i> A tight-knit team where your contributions are visible</li>
+                        <li><i class="fas fa-circle-check"></i> No corporate red tape — results-driven culture, full stop</li>
                     </ul>
                     <a href="mailto:Josh@Isunza-Logistics.com?subject=Career Inquiry" class="btn btn-primary">Apply Now</a>
                 </div>
@@ -2272,14 +2415,14 @@
 <footer class="footer" aria-label="Site footer">
     <div class="footer-main">
         <div class="footer-brand">
-            <img src="https://img1.wsimg.com/isteam/ip/7126f5a4-6aec-49a2-ab3c-8a499e39bc43/Isuza_Logistics_PNG_File-01.png/:/rs=h:110,cg:true,m/qt=q:95" alt="Isunza Logistics Inc.">
+            <img src="./logo-white.png" alt="Isunza Logistics Inc.">
             <p>Full-truckload freight brokerage based in Orland Park, IL. 10+ years moving freight across all lanes and equipment types.</p>
         </div>
         <div class="footer-col">
             <h4>Navigation</h4>
             <ul>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#shippers">For Shippers</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#carriers">Carriers</a></li>
                 <li><a href="#careers">Careers</a></li>
@@ -2393,6 +2536,26 @@
         });
     })();
 
+    // Partner section fade-up on scroll
+    (function () {
+        var section = document.querySelector('.partner-section');
+        if (!section) return;
+        if (!('IntersectionObserver' in window)) {
+            section.style.opacity = '1';
+            section.style.transform = 'none';
+            return;
+        }
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        observer.observe(section);
+    })();
+
     // Service card flip
     (function () {
         var cards = document.querySelectorAll('.service-card');
@@ -2417,6 +2580,28 @@
                 }
             });
         });
+    })();
+
+    // Careers fade-up on scroll
+    (function () {
+        var fadeEls = document.querySelectorAll('.careers [data-fade]');
+        if (!fadeEls.length) return;
+        if (!('IntersectionObserver' in window)) {
+            fadeEls.forEach(function (el) { el.classList.add('fade-in'); });
+            return;
+        }
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    var delay = parseFloat(entry.target.getAttribute('data-fade-delay')) || 0;
+                    setTimeout(function () {
+                        entry.target.classList.add('fade-in');
+                    }, delay * 1000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        fadeEls.forEach(function (el) { observer.observe(el); });
     })();
 </script>
 
