@@ -463,11 +463,10 @@
         }
 
         .partner-section-label {
-            font-size: 0.75rem;
+            font-size: 0.82rem;
             font-weight: 700;
             color: #0A1628;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            letter-spacing: 0.02em;
             margin-bottom: 8px;
         }
 
@@ -482,7 +481,7 @@
             display: flex;
             align-items: stretch;
             justify-content: center;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: nowrap;
         }
 
@@ -491,15 +490,16 @@
             border: 1px solid rgba(255,255,255,0.1);
             border-top: 3px solid #e20613;
             border-radius: 8px;
-            min-width: 150px;
+            min-width: 214px;
             min-height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 14px;
+            padding: 14px 22px;
             flex-shrink: 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
+            cursor: pointer;
         }
 
         .partner-logo-wrap:hover {
@@ -508,12 +508,80 @@
         }
 
         .partner-logo-wrap img {
-            height: 50px;
+            height: 84px;
             width: auto;
-            max-width: 110px;
+            max-width: 185px;
             object-fit: contain;
             display: block;
             margin: 0 auto;
+            transition: transform 0.2s ease;
+        }
+
+        .partner-logo-wrap:hover img {
+            transform: scale(1.08);
+        }
+
+        /* ---- LOGO LIGHTBOX ---- */
+        .logo-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.82);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+
+        .logo-lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .logo-lightbox-inner {
+            position: relative;
+            background: #0A1628;
+            border-radius: 12px;
+            border-top: 3px solid #e20613;
+            padding: 40px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+        }
+
+        .logo-lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.45);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 4px 6px;
+            transition: color 0.15s ease;
+            font-family: inherit;
+        }
+
+        .logo-lightbox-close:hover {
+            color: #fff;
+        }
+
+        .logo-lightbox-inner img {
+            max-width: 400px;
+            max-height: 280px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
         }
 
         /* ========================
@@ -821,7 +889,7 @@
 
         .why-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             max-width: 1160px;
             margin: 0 auto;
@@ -911,11 +979,11 @@
         .carriers-benefits {
             list-style: none;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px 36px;
             text-align: left;
             margin: 0 auto 40px;
-            max-width: 640px;
+            max-width: 780px;
         }
 
         .carriers-benefits li {
@@ -1455,7 +1523,7 @@
             }
 
             .why-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
 
             .carriers-benefits {
@@ -1714,8 +1782,18 @@
 
             .partner-logo-wrap img {
                 height: auto;
-                max-height: 50px;
-                max-width: 100px;
+                max-height: 80px;
+                max-width: 160px;
+            }
+
+            .logo-lightbox-inner {
+                max-width: 88vw;
+                padding: 32px 24px;
+            }
+
+            .logo-lightbox-inner img {
+                max-width: 260px;
+                max-height: 200px;
             }
 
             /* ---- SERVICES ---- */
@@ -2059,8 +2137,8 @@
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="container">
         <div class="hero-content">
-<h1>Purpose in <span>Every Mile.</span></h1>
-            <p class="hero-sub">We connect shippers with vetted, compliant carriers — handling every detail from dispatch to delivery so you can focus on running your business.</p>
+<h1>Your Freight. <span>Our Accountability.</span></h1>
+            <p class="hero-sub">We connect shippers with vetted, compliant carriers — handling every detail from dispatch to delivery to ensure each load arrives safely and on time.</p>
             <div class="hero-stats">
                 <div class="hero-stat">
                     <span class="hero-stat-value">Licensed &amp; Insured</span>
@@ -2086,7 +2164,7 @@
      PARTNERS
 ======================== -->
 <section class="partner-section" aria-label="Partnered with">
-    <p class="partner-section-label">Partnered With</p>
+    <p class="partner-section-label">Safety &amp; Compliance Partners</p>
     <div class="partner-section-accent"></div>
     <div class="partner-section-logos">
         <div class="partner-logo-wrap">
@@ -2114,7 +2192,6 @@
     <div class="container">
         <div class="section-header">
             <h2>What We Move</h2>
-            <p>Six equipment types. One point of contact. Whatever you're shipping and wherever it's going, we have the solution.</p>
         </div>
         <div class="services-grid">
             <div class="service-card" tabindex="0" role="button" aria-pressed="false" aria-label="Reefer — tap to learn more">
@@ -2123,7 +2200,7 @@
                         <span class="service-icon"><i class="fas fa-snowflake"></i></span>
                         <span class="service-tag">Temperature Controlled</span>
                         <h3>Reefer</h3>
-                        <p class="service-teaser">Carrier-verified cold chain from pickup to delivery.</p>
+                        <p class="service-teaser">Carriers are held to strict standards to keep your cold chain intact, start to finish.</p>
                         <span class="service-flip-hint"><i class="fas fa-rotate-right"></i> Details</span>
                     </div>
                     <div class="service-card-back" aria-hidden="true">
@@ -2160,7 +2237,7 @@
                     </div>
                     <div class="service-card-back" aria-hidden="true">
                         <h3>Flatbed &amp; Oversized</h3>
-                        <p>From structural steel and heavy machinery to oversized construction materials — we handle the permitting, escort coordination, and routing from start to finish. Most brokers avoid complex flatbed loads. We specialize in them.</p>
+                        <p>Structural steel, heavy machinery, oversized construction materials — you name it, we've hauled it. Permits, escort coordination, routing... we've got it handled from start to finish. Odd-shaped load that needs some creative securement? Bring it on.</p>
                         <a href="#contact" class="service-back-cta">Request a Quote <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -2192,7 +2269,7 @@
                     </div>
                     <div class="service-card-back" aria-hidden="true">
                         <h3>Power Only</h3>
-                        <p>You run the trailer. We find the truck. Vetted power-only carriers ready for dedicated lanes, drop and hook operations, and shippers who prefer to control their own equipment.</p>
+                        <p>You load the trailer. We find the truck. Vetted power-only carriers ready for dedicated lanes, drop and hook, and shippers who prefer to control their own equipment.</p>
                         <a href="#contact" class="service-back-cta">Request a Quote <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -2224,36 +2301,29 @@
     <div class="container">
         <div class="section-header">
             <h2>Why Shippers Trust Isunza</h2>
-            <p>We're not a load board. We're a partner. Here's what that means in practice.</p>
+            <p>We're not a load board — we're your partner. Here's what that actually looks like.</p>
         </div>
         <div class="why-grid">
             <div class="why-card">
                 <div class="why-card-header">
                     <span class="why-card-icon"><i class="fas fa-user-tie" style="color:#e20613;font-size:2rem;"></i></span>
-                    <h3>Single Point of Contact</h3>
+                    <h3>A Real Person Who Knows You</h3>
                 </div>
-                <p>Your dedicated rep knows your freight, your lanes, and your requirements. They talk directly to the driver — not to a dispatcher who talks to a dispatcher. No telephone game, just straight answers when something comes up.</p>
+                <p>Staying boutique was a deliberate choice. Instead of scaling up and spreading ourselves thin, we've kept our team small so every shipment gets hands-on attention — not a fraction of it. There's no maze of departments or chains of emails to chase down about your freight. Just one accountable point of contact, ready to respond immediately. Because to us, a load isn't something to check off a list — it's a chance to show you who we are, earn your trust, and become a real, lasting part of your transportation network.</p>
             </div>
             <div class="why-card">
                 <div class="why-card-header">
                     <span class="why-card-icon"><i class="fas fa-shield-halved" style="color:#e20613;font-size:2rem;"></i></span>
-                    <h3>Carrier Compliance</h3>
+                    <h3>Carrier Accountability</h3>
                 </div>
-                <p>Every carrier in our network is vetted through MyCarrierPackets and verified through Carrier411 before they haul for us. We don't cut corners on compliance — and neither should your freight partner.</p>
+                <p>Every carrier in our network is vetted and verified through our partners at Descartes — checking FMCSA authority, CSA scores, and insurance minimums before they ever touch your freight. We've built rigorous onboarding standards for every driver who picks up a load for us, and we can proudly say we've never had a stolen or missing load. As a boutique broker, we're able to speak directly with every driver on every load — real communication that keeps your freight, and your peace of mind, on track from pickup to delivery. We don't cut corners on compliance. That's why shippers trust Isunza with their freight.</p>
             </div>
             <div class="why-card">
                 <div class="why-card-header">
                     <span class="why-card-icon"><i class="fas fa-location-dot" style="color:#e20613;font-size:2rem;"></i></span>
-                    <h3>Real-Time Tracking</h3>
+                    <h3>Real-Time Accountability</h3>
                 </div>
-                <p>We're compatible with all major tracking platforms. Whether you need check calls, GPS updates, or ELD integration, we work within your existing systems — not around them — so visibility is never a negotiation.</p>
-            </div>
-            <div class="why-card">
-                <div class="why-card-header">
-                    <span class="why-card-icon"><i class="fas fa-hand-holding-dollar" style="color:#e20613;font-size:2rem;"></i></span>
-                    <h3>On-Time Carrier Pay</h3>
-                </div>
-                <p>Carriers haul for brokers who pay reliably. We're backed by a reputable financial partner, which means our carriers get paid on time — and that translates directly into better carrier coverage for your freight.</p>
+                <p>We maintain a 96%+ tracking compliance rate across our customer base — because we're compatible with all major tracking platforms. Compliance is monitored hourly, so updates are always known in real-time. Whether you need check calls, GPS updates, or ELD integration, we work within your existing systems — not around them — so visibility is never a negotiation. Our TMS connects via EDI and API — integration isn't a hurdle, it's a given.</p>
             </div>
         </div>
     </div>
@@ -2266,11 +2336,10 @@
     <div class="container">
         <div class="carriers-inner">
             <h2>Partner With Us as a Carrier</h2>
-            <p class="carriers-lead">We work with owner-operators and small fleets who are tired of chasing payments and fighting for loads. If you run a clean operation and show up when you say you will, we want to work with you — consistently.</p>
-            <p class="carriers-lead">Onboarding is straightforward. Pay is on time. And we build real working relationships, not one-load transactions.</p>
+            <p class="carriers-lead">Tired of brokers who don't pay detention and layover, or who leave you waiting to get your invoice factored after delivery? Whether you're running one truck or a national fleet, we believe consistent, fair pay isn't optional — it's the baseline. If you run a clean operation and show up when you say you will, we want to work with you — consistently.</p>
+            <p class="carriers-lead">We work with owner-operators, small fleets, and national carriers alike. Onboarding is straightforward, our credit scores and days-to-pay are among the highest in the industry, and we build real working relationships, not one-load transactions.</p>
             <ul class="carriers-benefits">
                 <li>Consistent load volume on active lanes</li>
-                <li>On-time payment through a trusted financial partner</li>
                 <li>Quick, simple carrier packet onboarding</li>
                 <li>Direct communication — no layers of middlemen</li>
                 <li>Dedicated rep who knows your equipment and preferences</li>
@@ -2290,20 +2359,19 @@
             <div class="careers-layout">
                 <div class="careers-roles" data-fade data-fade-delay="0">
                     <h2>Build Your Career at Isunza</h2>
-                    <p class="careers-intro">We're a growing freight brokerage with a focused team and real room to advance. If you're motivated, coachable, and want to own your results — not just fill a seat — this is the kind of place where that work gets noticed.</p>
+                    <p class="careers-intro">We're a freight brokerage built small by design — which means real room to advance, not layers of management standing in your way. If you're motivated, coachable, and want to own your results, not just fill a seat, this is the kind of place where that work gets noticed.</p>
                     <p class="col-label">Currently Hiring</p>
                     <ul>
                         <li>Freight Broker / Agent</li>
-                        <li>Dispatcher</li>
                         <li>Staff Accountant</li>
                         <li>Operations Coordinator</li>
+                        <li>Carrier Relationship Manager</li>
                     </ul>
                 </div>
                 <div class="careers-offer" data-fade data-fade-delay="0.15">
                     <p class="col-label">Why Join Isunza</p>
                     <ul>
-                        <li><i class="fas fa-circle-check"></i> Competitive base pay with performance upside</li>
-                        <li><i class="fas fa-circle-check"></i> Mentorship from a 10+ year industry veteran</li>
+                        <li><i class="fas fa-circle-check"></i> Competitive base pay with uncapped commission potential</li>
                         <li><i class="fas fa-circle-check"></i> Real ownership of your book of business from day one</li>
                         <li><i class="fas fa-circle-check"></i> A tight-knit team where your contributions are visible</li>
                         <li><i class="fas fa-circle-check"></i> No corporate red tape — results-driven culture, full stop</li>
@@ -2337,7 +2405,7 @@
     <div class="container">
         <div class="section-header">
             <h2>Let's Move Your Freight</h2>
-            <p>Tell us about your load and we'll get back to you with a quote — usually the same day.</p>
+            <p>Tell us about your freight needs and we'll get back to you with a quote — usually the same day.</p>
         </div>
         <div class="contact-layout">
             <div class="contact-form">
@@ -2376,14 +2444,14 @@
                         <div class="ci-icon-wrap"><i class="fas fa-location-dot" style="color:#e20613;"></i></div>
                         <div>
                             <div class="ci-label">Address</div>
-                            <span class="ci-value">15255 S 94th Ave, Suite 500<br>Orland Park, IL 60462</span>
+                            <span class="ci-value">1333 Burr Ridge Parkway, Suite 200<br>Burr Ridge, Illinois 60527</span>
                         </div>
                     </div>
                     <div class="ci-item">
                         <div class="ci-icon-wrap"><i class="fas fa-phone" style="color:#e20613;"></i></div>
                         <div>
                             <div class="ci-label">Phone</div>
-                            <a href="tel:6306724916" class="ci-value">(630) 672-4916</a>
+                            <a href="tel:3123881302" class="ci-value">312-388-1302</a>
                         </div>
                     </div>
                     <div class="ci-item">
@@ -2416,7 +2484,7 @@
     <div class="footer-main">
         <div class="footer-brand">
             <img src="./logo-white.png" alt="Isunza Logistics Inc.">
-            <p>Full-truckload freight brokerage based in Orland Park, IL. 10+ years moving freight across all lanes and equipment types.</p>
+            <p>A full-truckload freight brokerage specializing in produce, frozen, and food &amp; beverage shipments nationwide.</p>
         </div>
         <div class="footer-col">
             <h4>Navigation</h4>
@@ -2432,14 +2500,14 @@
         <div class="footer-col">
             <h4>Contact</h4>
             <ul>
-                <li><a href="tel:6306724916">(630) 672-4916</a></li>
+                <li><a href="tel:6306866495">630-686-6495</a></li>
                 <li><a href="mailto:Josh@Isunza-Logistics.com">Josh@Isunza-Logistics.com</a></li>
-                <li><a href="#contact">15255 S 94th Ave, Suite 500, Orland Park, IL 60462</a></li>
+                <li><a href="#contact">1333 Burr Ridge Pkwy, Suite 200, Burr Ridge, IL 60527</a></li>
             </ul>
         </div>
     </div>
     <div class="footer-bottom">
-        <p class="footer-copy">&copy; 2025 Isunza Logistics Inc. All Rights Reserved.</p>
+        <p class="footer-copy">&copy; <span id="copyright-year"></span> Isunza Logistics Inc. All Rights Reserved.</p>
     </div>
 </footer>
 
@@ -2603,7 +2671,53 @@
         }, { threshold: 0.15 });
         fadeEls.forEach(function (el) { observer.observe(el); });
     })();
+
+    // Dynamic copyright year
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // Partner logo lightbox
+    (function () {
+        var lightbox = document.getElementById('logo-lightbox');
+        var lightboxImg = document.getElementById('logo-lightbox-img');
+        var closeBtn = document.querySelector('.logo-lightbox-close');
+
+        function openLightbox(src, alt) {
+            lightboxImg.src = src;
+            lightboxImg.alt = alt || '';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.partner-logo-wrap').forEach(function (wrap) {
+            wrap.addEventListener('click', function () {
+                var img = wrap.querySelector('img');
+                if (img) openLightbox(img.src, img.alt);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    })();
 </script>
+
+<div id="logo-lightbox" class="logo-lightbox" role="dialog" aria-modal="true" aria-label="Logo enlarged view">
+    <div class="logo-lightbox-inner">
+        <button class="logo-lightbox-close" aria-label="Close">&times;</button>
+        <img id="logo-lightbox-img" src="" alt="">
+    </div>
+</div>
 
 </body>
 </html>
