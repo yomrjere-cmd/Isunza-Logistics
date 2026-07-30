@@ -1777,6 +1777,7 @@
 
             .partner-logo-wrap {
                 width: 100%;
+                min-width: 0;
                 min-height: 70px;
                 flex-shrink: 1;
                 justify-content: center;
@@ -2400,7 +2401,8 @@
         </div>
         <div class="contact-layout">
             <div class="contact-form">
-                <form name="contact" action="mailto:Josh@Isunza-Logistics.com" method="post" enctype="text/plain">
+                <form name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contact" />
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Name</label>
