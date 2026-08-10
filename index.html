@@ -478,23 +478,24 @@
         }
 
         .partner-section-logos {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
             align-items: stretch;
-            justify-content: center;
             gap: 16px;
-            flex-wrap: nowrap;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .partner-logo-wrap {
             background: #ffffff;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
-            min-width: 214px;
-            min-height: auto;
+            min-width: 0;
+            min-height: 113px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 14px 22px;
+            padding: 12px 16px;
             flex-shrink: 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -507,9 +508,9 @@
         }
 
         .partner-logo-wrap img {
-            height: 84px;
-            width: auto;
-            max-width: 185px;
+            width: 100%;
+            height: 76px;
+            max-width: 100%;
             object-fit: contain;
             display: block;
             margin: 0 auto;
@@ -1784,9 +1785,10 @@
             }
 
             .partner-logo-wrap img {
-                height: auto;
-                max-height: 80px;
-                max-width: 160px;
+                width: 100%;
+                height: 60px;
+                max-width: 100%;
+                object-fit: contain;
             }
 
             .logo-lightbox-inner {
@@ -2172,6 +2174,9 @@
         <div class="partner-logo-wrap">
             <img src="./smartway.png" alt="SmartWay">
         </div>
+        <div class="partner-logo-wrap">
+            <img src="./descartes-mcp-badge.png" alt="Descartes MyCarrierPortal">
+        </div>
     </div>
 </section>
 
@@ -2401,8 +2406,9 @@
         </div>
         <div class="contact-layout">
             <div class="contact-form">
-                <form name="contact" method="POST" data-netlify="true">
-                    <input type="hidden" name="form-name" value="contact" />
+                <form id="contact-form" name="contact" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="e445a458-24c2-42e2-9868-1be4a28a2ea9" />
+                    <input type="hidden" name="subject" value="New Contact Form Submission - Isunza Logistics" />
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -2701,6 +2707,37 @@
 
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeLightbox();
+        });
+    })();
+
+    (function () {
+        var form = document.getElementById('contact-form');
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = form.querySelector('.form-submit');
+            var originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Sending…';
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (data.success) {
+                    form.innerHTML = '<p style="font-size:1.1rem;color:#0A1628;padding:32px 0;text-align:center;">Thanks — we\'ll be in touch shortly.</p>';
+                } else {
+                    btn.disabled = false;
+                    btn.textContent = originalText;
+                    alert('Something went wrong. Please try again or email us directly.');
+                }
+            })
+            .catch(function () {
+                btn.disabled = false;
+                btn.textContent = originalText;
+                alert('Something went wrong. Please try again or email us directly.');
+            });
         });
     })();
 </script>
