@@ -2068,6 +2068,69 @@
                 min-height: 0;
             }
         }
+
+        /* ── Application modal ── */
+        .apply-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(10,22,40,0.72);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .apply-modal-inner {
+            background: #fff;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 540px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px 36px 32px;
+            position: relative;
+        }
+        .apply-modal-inner h3 {
+            font-size: 1.22rem;
+            font-weight: 700;
+            color: #0A1628;
+            margin: 0 0 24px;
+        }
+        .apply-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 1.9rem;
+            color: #888;
+            cursor: pointer;
+            line-height: 1;
+            padding: 2px 6px;
+            transition: color 0.15s;
+        }
+        .apply-modal-close:hover { color: #e20613; }
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e0e4eb;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.92rem;
+            color: #1a1a1a;
+            background: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            appearance: none;
+            cursor: pointer;
+        }
+        .form-group select:focus {
+            border-color: #e20613;
+            box-shadow: 0 0 0 3px rgba(226,6,19,0.12);
+        }
+        @media (max-width: 768px) {
+            .apply-modal-inner { padding: 32px 20px 24px; }
+        }
     </style>
 </head>
 <body>
@@ -2158,26 +2221,7 @@
 <section class="partner-section" aria-label="Partnered with">
     <p class="partner-section-label">Safety &amp; Compliance Partners</p>
     <div class="partner-section-accent"></div>
-    <div class="partner-section-logos">
-        <div class="partner-logo-wrap">
-            <img src="./cargonet.png" alt="CargoNet">
-        </div>
-        <div class="partner-logo-wrap">
-            <img src="./tapa.png" alt="TAPA Americas">
-        </div>
-        <div class="partner-logo-wrap">
-            <img src="./freightvalidate.png" alt="Freight Validate">
-        </div>
-        <div class="partner-logo-wrap">
-            <img src="./carrier411.png" alt="Carrier411">
-        </div>
-        <div class="partner-logo-wrap">
-            <img src="./smartway.png" alt="SmartWay">
-        </div>
-        <div class="partner-logo-wrap">
-            <img src="./descartes-mcp-badge.png" alt="Descartes MyCarrierPortal">
-        </div>
-    </div>
+    <div class="partner-section-logos" id="partner-logos-container"></div>
 </section>
 
 <!-- ========================
@@ -2340,7 +2384,7 @@
                 <li>Dedicated rep who knows your equipment and preferences</li>
                 <li>Reefer, dry van, flatbed, and hot shot opportunities</li>
             </ul>
-            <a href="mailto:Josh@Isunza-Logistics.com?subject=Carrier Packet Request" class="btn btn-primary">Request a Carrier Packet</a>
+            <button id="carrier-packet-btn" type="button" class="btn btn-primary">Request a Carrier Packet</button>
         </div>
     </div>
 </section>
@@ -2356,12 +2400,7 @@
                     <h2>Build Your Career at Isunza</h2>
                     <p class="careers-intro">We're a freight brokerage built small by design — which means real room to advance, not layers of management standing in your way. If you're motivated, coachable, and want to own your results, not just fill a seat, this is the kind of place where that work gets noticed.</p>
                     <p class="col-label">Currently Hiring</p>
-                    <ul>
-                        <li>Freight Broker / Agent</li>
-                        <li>Staff Accountant</li>
-                        <li>Operations Coordinator</li>
-                        <li>Carrier Relationship Manager</li>
-                    </ul>
+                    <ul id="jobs-list"></ul>
                 </div>
                 <div class="careers-offer" data-fade data-fade-delay="0.15">
                     <p class="col-label">Why Join Isunza</p>
@@ -2371,7 +2410,7 @@
                         <li><i class="fas fa-circle-check"></i> A tight-knit team where your contributions are visible</li>
                         <li><i class="fas fa-circle-check"></i> No corporate red tape — results-driven culture, full stop</li>
                     </ul>
-                    <a href="mailto:Josh@Isunza-Logistics.com?subject=Career Inquiry" class="btn btn-primary">Apply Now</a>
+                    <button id="apply-now-btn" type="button" class="btn btn-primary">Apply Now</button>
                 </div>
             </div>
         </div>
@@ -2409,6 +2448,7 @@
                 <form id="contact-form" name="contact" action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="e445a458-24c2-42e2-9868-1be4a28a2ea9" />
                     <input type="hidden" name="subject" value="New Contact Form Submission - Isunza Logistics" />
+                    <input type="hidden" name="redirect" value="false" />
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -2435,6 +2475,7 @@
                     </div>
                     <button type="submit" class="form-submit">Send Message</button>
                 </form>
+                <div id="contact-form-message" style="display:none;"></div>
             </div>
             <div class="contact-info-panel">
                 <h3>Contact Isunza Logistics</h3>
@@ -2671,6 +2712,8 @@
         fadeEls.forEach(function (el) { observer.observe(el); });
     })();
 
+    document.addEventListener('DOMContentLoaded', function () {
+
     // Dynamic copyright year
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
@@ -2692,12 +2735,16 @@
             document.body.style.overflow = '';
         }
 
-        document.querySelectorAll('.partner-logo-wrap').forEach(function (wrap) {
-            wrap.addEventListener('click', function () {
-                var img = wrap.querySelector('img');
-                if (img) openLightbox(img.src, img.alt);
+        var logosContainer = document.getElementById('partner-logos-container');
+        if (logosContainer) {
+            logosContainer.addEventListener('click', function (e) {
+                var wrap = e.target.closest('.partner-logo-wrap');
+                if (wrap) {
+                    var img = wrap.querySelector('img');
+                    if (img) openLightbox(img.src, img.alt);
+                }
             });
-        });
+        }
 
         closeBtn.addEventListener('click', closeLightbox);
 
@@ -2711,14 +2758,24 @@
     })();
 
     (function () {
-        var form = document.getElementById('contact-form');
-        if (!form) return;
+        var form   = document.getElementById('contact-form');
+        var msgDiv = document.getElementById('contact-form-message');
+        if (!form || !msgDiv) return;
+
+        var ERROR_HTML = '<p style="margin:0;font-size:0.95rem;color:#e20613;line-height:1.6;">'
+            + 'Something went wrong. Please try again or email us directly at '
+            + '<a href="mailto:Josh@Isunza-Logistics.com" style="color:#e20613;font-weight:600;">Josh@Isunza-Logistics.com</a>.'
+            + '</p>';
+
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             var btn = form.querySelector('.form-submit');
             var originalText = btn.textContent;
             btn.disabled = true;
             btn.textContent = 'Sending…';
+            msgDiv.style.display = 'none';
+            msgDiv.innerHTML = '';
+
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 body: new FormData(form)
@@ -2726,26 +2783,322 @@
             .then(function (res) { return res.json(); })
             .then(function (data) {
                 if (data.success) {
-                    form.innerHTML = '<p style="font-size:1.1rem;color:#0A1628;padding:32px 0;text-align:center;">Thanks — we\'ll be in touch shortly.</p>';
+                    form.style.display = 'none';
+                    msgDiv.innerHTML = '<p style="margin:0;font-size:1.05rem;color:#0A1628;font-weight:600;line-height:1.6;">'
+                        + 'Thanks — we’ll be in touch shortly.'
+                        + '</p>';
+                    msgDiv.style.cssText = 'display:flex;align-items:center;justify-content:center;'
+                        + 'min-height:180px;text-align:center;padding:32px 16px;';
                 } else {
                     btn.disabled = false;
                     btn.textContent = originalText;
-                    alert('Something went wrong. Please try again or email us directly.');
+                    msgDiv.innerHTML = ERROR_HTML;
+                    msgDiv.style.cssText = 'display:block;padding:12px 0 4px;';
                 }
             })
             .catch(function () {
                 btn.disabled = false;
                 btn.textContent = originalText;
-                alert('Something went wrong. Please try again or email us directly.');
+                msgDiv.innerHTML = ERROR_HTML;
+                msgDiv.style.cssText = 'display:block;padding:12px 0 4px;';
             });
         });
     })();
+
+    (function () {
+        var openBtn = document.getElementById('apply-now-btn');
+        var modal   = document.getElementById('apply-modal');
+        var closeBtn = modal ? modal.querySelector('.apply-modal-close') : null;
+        var form    = document.getElementById('apply-form');
+        var msgDiv  = document.getElementById('apply-form-message');
+        if (!openBtn || !modal || !closeBtn || !form || !msgDiv) return;
+
+        function openModal() {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            form.reset();
+            form.style.display = '';
+            msgDiv.style.display = 'none';
+            msgDiv.innerHTML = '';
+        }
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+        });
+
+        var APPLY_ERROR = '<p style="margin:0;font-size:0.92rem;color:#e20613;line-height:1.6;">'
+            + 'Something went wrong. Please try again or email us at '
+            + '<a href="mailto:Josh@Isunza-Logistics.com" style="color:#e20613;font-weight:600;">Josh@Isunza-Logistics.com</a>.'
+            + '</p>';
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = form.querySelector('.form-submit');
+            var origText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Sending…';
+            msgDiv.style.display = 'none';
+            msgDiv.innerHTML = '';
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (data.success) {
+                    form.style.display = 'none';
+                    msgDiv.innerHTML = '<p style="margin:0;font-size:1.05rem;color:#0A1628;font-weight:600;line-height:1.7;text-align:center;">'
+                        + 'Thanks for applying — we’ll be in touch.</p>';
+                    msgDiv.style.cssText = 'display:flex;align-items:center;justify-content:center;min-height:120px;padding:24px 0;';
+                } else {
+                    btn.disabled = false;
+                    btn.textContent = origText;
+                    msgDiv.innerHTML = APPLY_ERROR;
+                    msgDiv.style.cssText = 'display:block;padding:12px 0 4px;';
+                }
+            })
+            .catch(function () {
+                btn.disabled = false;
+                btn.textContent = origText;
+                msgDiv.innerHTML = APPLY_ERROR;
+                msgDiv.style.cssText = 'display:block;padding:12px 0 4px;';
+            });
+        });
+    })();
+
+    (function () {
+        var openBtn  = document.getElementById('carrier-packet-btn');
+        var modal    = document.getElementById('carrier-packet-modal');
+        var closeBtn = modal ? modal.querySelector('.apply-modal-close') : null;
+        var form     = document.getElementById('carrier-packet-form');
+        var msgDiv   = document.getElementById('carrier-packet-message');
+        if (!openBtn || !modal || !closeBtn || !form || !msgDiv) return;
+
+        function openModal() {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            form.reset();
+            form.style.display = '';
+            msgDiv.style.display = 'none';
+            msgDiv.innerHTML = '';
+        }
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+        });
+
+        var CP_ERROR = '<p style="margin:0;font-size:0.92rem;color:#e20613;line-height:1.6;">'
+            + 'Something went wrong. Please try again or email us at '
+            + '<a href="mailto:Josh@Isunza-Logistics.com" style="color:#e20613;font-weight:600;">Josh@Isunza-Logistics.com</a>.'
+            + '</p>';
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = form.querySelector('.form-submit');
+            var origText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            msgDiv.style.display = 'none';
+            msgDiv.innerHTML = '';
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (data.success) {
+                    form.style.display = 'none';
+                    msgDiv.innerHTML = '<p style="margin:0;font-size:1.05rem;color:#0A1628;font-weight:600;line-height:1.7;text-align:center;">'
+                        + 'Thanks -- we\'ll send your carrier packet shortly.</p>';
+                    msgDiv.style.cssText = 'display:flex;align-items:center;justify-content:center;min-height:120px;padding:24px 0;';
+                } else {
+                    btn.disabled = false;
+                    btn.textContent = origText;
+                    msgDiv.innerHTML = CP_ERROR;
+                    msgDiv.style.cssText = 'display:block;padding:12px 0 4px;';
+                }
+            })
+            .catch(function () {
+                btn.disabled = false;
+                btn.textContent = origText;
+                msgDiv.innerHTML = CP_ERROR;
+                msgDiv.style.cssText = 'display:block;padding:12px 0 4px;';
+            });
+        });
+    })();
+
+    // Render partner logos from partners.json
+    (function () {
+        var container = document.getElementById('partner-logos-container');
+        if (!container) return;
+        fetch('./partners.json')
+            .then(function (res) { return res.json(); })
+            .then(function (partners) {
+                container.innerHTML = '';
+                partners.forEach(function (partner) {
+                    var wrap = document.createElement('div');
+                    wrap.className = 'partner-logo-wrap';
+                    var img = document.createElement('img');
+                    img.src = './' + partner.file;
+                    img.alt = partner.name;
+                    wrap.appendChild(img);
+                    container.appendChild(wrap);
+                });
+            });
+    })();
+
+    // Render job listings and Apply Now dropdown from jobs.json
+    (function () {
+        var jobsList = document.getElementById('jobs-list');
+        var positionSelect = document.getElementById('apply-position');
+        if (!jobsList) return;
+        fetch('./jobs.json')
+            .then(function (res) { return res.json(); })
+            .then(function (jobs) {
+                jobsList.innerHTML = '';
+                jobs.forEach(function (job) {
+                    var li = document.createElement('li');
+                    li.textContent = job;
+                    jobsList.appendChild(li);
+                });
+                if (positionSelect) {
+                    while (positionSelect.options.length > 1) {
+                        positionSelect.remove(1);
+                    }
+                    jobs.forEach(function (job) {
+                        var opt = document.createElement('option');
+                        opt.textContent = job;
+                        positionSelect.appendChild(opt);
+                    });
+                }
+            });
+    })();
+
+    }); // end DOMContentLoaded
 </script>
 
 <div id="logo-lightbox" class="logo-lightbox" role="dialog" aria-modal="true" aria-label="Logo enlarged view">
     <div class="logo-lightbox-inner">
         <button class="logo-lightbox-close" aria-label="Close">&times;</button>
         <img id="logo-lightbox-img" src="" alt="">
+    </div>
+</div>
+
+<div id="apply-modal" class="apply-modal" role="dialog" aria-modal="true" aria-label="Job Application" style="display:none;">
+    <div class="apply-modal-inner">
+        <button class="apply-modal-close" aria-label="Close">&times;</button>
+        <h3>Apply to Join Isunza</h3>
+        <form id="apply-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="e445a458-24c2-42e2-9868-1be4a28a2ea9" />
+            <input type="hidden" name="subject" value="New Job Application - Isunza Logistics" />
+            <input type="hidden" name="redirect" value="false" />
+            <div class="form-group">
+                <label for="apply-name">Full Name</label>
+                <input type="text" id="apply-name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="apply-email">Email</label>
+                    <input type="email" id="apply-email" name="email" placeholder="you@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="apply-phone">Phone</label>
+                    <input type="tel" id="apply-phone" name="phone" placeholder="(555) 000-0000" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="apply-position">Position Interested In</label>
+                <select id="apply-position" name="position" required>
+                    <option value="">Select a position...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="apply-message">Cover Note (optional)</label>
+                <textarea id="apply-message" name="message" placeholder="Tell us about yourself — your background, what draws you to this role, anything else we should know…"></textarea>
+            </div>
+            <button type="submit" class="form-submit">Submit Application</button>
+        </form>
+        <div id="apply-form-message" style="display:none;"></div>
+    </div>
+</div>
+
+<div id="carrier-packet-modal" class="apply-modal" role="dialog" aria-modal="true" aria-label="Carrier Packet Request" style="display:none;">
+    <div class="apply-modal-inner">
+        <button class="apply-modal-close" aria-label="Close">&times;</button>
+        <h3>Request a Carrier Packet</h3>
+        <form id="carrier-packet-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="e445a458-24c2-42e2-9868-1be4a28a2ea9" />
+            <input type="hidden" name="subject" value="New Carrier Packet Request - Isunza Logistics" />
+            <input type="hidden" name="redirect" value="false" />
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cp-company">Company Name</label>
+                    <input type="text" id="cp-company" name="company" placeholder="Your company name" required>
+                </div>
+                <div class="form-group">
+                    <label for="cp-contact">Contact Name</label>
+                    <input type="text" id="cp-contact" name="contact_name" placeholder="Your name" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cp-email">Email</label>
+                    <input type="email" id="cp-email" name="email" placeholder="you@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="cp-phone">Phone</label>
+                    <input type="tel" id="cp-phone" name="phone" placeholder="(555) 000-0000" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cp-mc">MC# (optional)</label>
+                    <input type="text" id="cp-mc" name="mc_number" placeholder="MC-XXXXXX">
+                </div>
+                <div class="form-group">
+                    <label for="cp-dot">DOT# (optional)</label>
+                    <input type="text" id="cp-dot" name="dot_number" placeholder="XXXXXXX">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cp-equipment">Equipment Type</label>
+                <select id="cp-equipment" name="equipment_type">
+                    <option value="">Select equipment type...</option>
+                    <option>Reefer</option>
+                    <option>Dry Van</option>
+                    <option>Flatbed</option>
+                    <option>Sprinter / Hot Shot</option>
+                    <option>Power Only</option>
+                    <option>Produce</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cp-message">Message (optional)</label>
+                <textarea id="cp-message" name="message" placeholder="Any additional details -- preferred lanes, availability, anything else we should know..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Request</button>
+        </form>
+        <div id="carrier-packet-message" style="display:none;"></div>
     </div>
 </div>
 
