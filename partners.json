@@ -1,0 +1,8 @@
+[
+  { "name": "TAPA", "file": "tapa.png" },
+  { "name": "CargoNet", "file": "cargonet.png" },
+  { "name": "FreightValidate", "file": "freightvalidate.png" },
+  { "name": "Carrier411", "file": "carrier411.png" },
+  { "name": "SmartWay", "file": "smartway.png" },
+  { "name": "Descartes MyCarrierPortal", "file": "descartes-mcp-badge.png" }
+]
